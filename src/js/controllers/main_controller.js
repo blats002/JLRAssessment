@@ -23,6 +23,7 @@ angular.module('JLRAssessment.controllers.Main', [])
                 mainCtrl.showStart = false;
                 mainCtrl.showNext = false;
                 mainCtrl.showEnd = false;
+                mainCtrl.showButtonNav = false;
             };
 
             mainCtrl.exit = function () {
@@ -32,7 +33,6 @@ angular.module('JLRAssessment.controllers.Main', [])
             mainCtrl.showStart = false;
             mainCtrl.showNext = false;
             mainCtrl.showEnd = false;
-            
         })
         .controller('TestController', function ($scope, $routeParams) {
             testCtrl = this;
@@ -373,12 +373,15 @@ angular.module('JLRAssessment.controllers.Main', [])
             
             testCtrl.description = testCtrl.tests[testCtrl.testid - 1].description;
             
+            testCtrl.showResult = false;
+            
             mainCtrl.showPrevious = testCtrl.pageid > 1;
             mainCtrl.showStart = testCtrl.pageid == 0;
             mainCtrl.showNext = testCtrl.pageid > 0 && testCtrl.pageid < testCtrl.questions.length;
             mainCtrl.showEnd = testCtrl.pageid == testCtrl.questions.length;
             
             testCtrl.showStart = mainCtrl.showStart;
+            testCtrl.showResult = false;
             
             mainCtrl.previous = function () {
                 testCtrl.pageid = testCtrl.pageid - 1;
@@ -404,6 +407,12 @@ angular.module('JLRAssessment.controllers.Main', [])
                 mainCtrl.showEnd = testCtrl.pageid == testCtrl.questions.length;
                 testCtrl.showStart = mainCtrl.showStart;
             };
-
             
+            mainCtrl.submit = function () {
+                testCtrl.showResult = true;
+                mainCtrl.showPrevious = false;
+                mainCtrl.showStart = false;
+                mainCtrl.showNext = false;
+                mainCtrl.showEnd = false;
+            };
         });
