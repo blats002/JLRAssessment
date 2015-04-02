@@ -1,0 +1,28 @@
+<section class="section container-fluid" ng-controller="TestController as test">
+    <div  class="scrollable" style="background-color: #FFFFFF;">
+        <div class="container container-fluid scrollable-content">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h3 class="page-header">{{test.testname}}</h3> 
+                    <h4 ng-show="test.showStart">{{test.description}}</h4>
+                    
+                </div>
+                <div ng-hide="test.showStart" class="col-sm-12">
+                    <form role="form">
+                        <p style="text-indent: 0px;white-space: pre">{{test.questions[test.pageid - 1].question}}</p>
+                        <br>
+                        <div class="radio">
+                            <label><input type="radio" name="optradio">Identical</label>
+                        </div>
+                        <div class="radio">
+                            <label><input type="radio" name="optradio">Not Identical</label>
+                        </div>
+                        <br>
+                        
+                    </form>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</section>
