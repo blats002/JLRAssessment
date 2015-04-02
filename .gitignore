@@ -141,3 +141,10 @@ config.js
 gulpfile.js
 package.json
 
+/hooks
+/nbproject
+/src
+/bower.json
+/package.json
+/config.js
+/gulpfile.js
