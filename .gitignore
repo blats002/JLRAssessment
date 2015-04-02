@@ -133,3 +133,11 @@ node_modules
 
 ### Bower ###
 bower_components
+src
+nbproject
+hooks
+bower.json
+config.js
+gulpfile.js
+package.json
+
