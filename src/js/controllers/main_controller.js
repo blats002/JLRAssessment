@@ -49,6 +49,7 @@ angular.module('JLRAssessment.controllers.Main', [])
                     description: "The following assessment tool is designed to assess your ability to pay attention to detail.\n\
 \n\
 For each item in the assessment, you will be presented with two sets of characters. Your task will be to examin the two sets carefully, and decide wehter or not they are identical.\n\
+\n\
 If the two sets are identical, click on the answer labelled identical. If the two sets are not Identical, click on the answer labelled Not Identical.\n\
 \n\
 You must work quickly and accurately.",
@@ -61,6 +62,7 @@ You must work quickly and accurately.",
                     description: "The following assessment tool is designed to assess your ability to pay attention to detail.\n\
 \n\
 For each item in the assessment, you will be presented with two sets of characters. Your task will be to examin the two sets carefully, and decide wehter or not they are identical.\n\
+\n\
 If the two sets are identical, click on the answer labelled identical. If the two sets are not Identical, click on the answer labelled Not Identical.\n\
 \n\
 This test is not timed.",
@@ -86,6 +88,7 @@ This test is not timed.",
 
             for (var x = 0; x < 60; x++) {
                 testCtrl.questions.push(tempArray[x]);
+                testCtrl.questions.selected = "none";
             }
 
             testCtrl.description = testCtrl.tests[testCtrl.testid - 1].description;
