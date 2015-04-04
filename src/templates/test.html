@@ -3,8 +3,12 @@
         <div class="container container-fluid scrollable-content">
             <div ng-hide="test.showResult" class="row">
                 <div class="col-sm-12">
-                    <h3 class="page-header">{{test.testname}}</h3> 
-                    <h4 ng-show="test.showStart">{{test.description}}</h4>
+                    <h3 class="page-header">{{test.testname}}</h3>
+                    <div ng-show="test.showStart">
+                        <p style="text-indent: 0px;white-space: pre-wrap">{{test.description}}</p>
+                        <h4 ng-show="test.timed">Timed: 4 min</h4>
+                        <h4>Total Items: 60</h4>
+                    </div>
                 </div>
                 <div ng-hide="test.showStart" class="col-sm-12">
                     <form role="form">
@@ -25,7 +29,7 @@
                     <h3 class="page-header">{{test.testname}}</h3> 
                 </div>
                 <div class="col-sm-12">
-                    Result Page.
+                    Result Page.{{test.results.correctAnswers}}/{{test.results.totalScore}}
                 </div>
             </div>
         </div>
