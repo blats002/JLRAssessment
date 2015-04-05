@@ -40,7 +40,7 @@
             </div>
         </div>
 
-        <div class="navbar navbar-app navbar-absolute-bottom">
+        <div ng-show="main.showButtonNav" class="navbar navbar-app navbar-absolute-bottom">
             <div class="btn-group justified">
                 <a ng-click="main.previous()" ng-show="main.showPrevious" class="btn btn-navbar"><i class="fa fa-backward"></i> Previous</a>
                 <a ng-click="main.start()" ng-show="main.showStart" class="btn btn-navbar">Start <i class="fa fa-forward"></i></a>

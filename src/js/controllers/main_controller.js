@@ -1,4 +1,15 @@
 
+document.addEventListener("deviceready", onDeviceReady, false);
+
+function onDeviceReady() {
+    document.addEventListener("backbutton", back, false);
+}
+
+function back(){
+    mainCtrl.back();
+}
+
+
 var mainCtrl;
 var testCtrl;
 Array.prototype.shuffle = function () {
@@ -13,6 +24,7 @@ Array.prototype.shuffle = function () {
     }
     return this;
 };
+
 angular.module('JLRAssessment.controllers.Main', [])
         .controller('MainController', function ($scope) {
             mainCtrl = this;
@@ -24,6 +36,7 @@ angular.module('JLRAssessment.controllers.Main', [])
                 mainCtrl.showEnd = false;
                 mainCtrl.showButtonNav = false;
             };
+            
             mainCtrl.exit = function () {
                 navigator.app.exitApp();
             };
@@ -33,6 +46,7 @@ angular.module('JLRAssessment.controllers.Main', [])
             mainCtrl.showEnd = false;
         })
         .controller('TestController', function ($scope, $routeParams) {
+            mainCtrl.showButtonNav = true;
             testCtrl = this;
             testCtrl.testid = parseInt($routeParams.testid, 10);
             testCtrl.pageid = parseInt($routeParams.pageid, 10);
