@@ -1,0 +1,36 @@
+<section class="section container-fluid" ng-controller="TestController as test">
+    <div  class="scrollable" style="background-color: #FFFFFF;">
+        <div class="container container-fluid scrollable-content">
+            <div ng-hide="test.showResult" class="row">
+                <div class="col-sm-12">
+                    <h3 class="page-header">{{test.testname}}</h3>
+                    <div ng-show="test.showStart">
+                        <p style="text-indent: 0px;white-space: pre-wrap">{{test.description}}</p>
+                        <h4 ng-show="test.timed">Timed: 9.5 min</h4>
+                        <h4>Total Items: 29</h4>
+                    </div>
+                </div>
+                <div ng-hide="test.showStart" class="col-sm-12">
+                    <form role="form">
+                        <p style="text-indent: 0px;white-space: pre">{{test.pageid}}) {{test.questions[test.pageid - 1].question}}</p>
+                        <br>
+                        <div class="text-editor">
+                            <label>Answer: <input type="text" value="Identical" ng-model="test.questions[test.pageid - 1].answer" name="answer"/></label>
+                        </div>
+                        <br>
+                    </form>
+                </div>
+            </div>
+            <div ng-show="test.showResult" class="row">
+                <div class="col-sm-12">
+                    <h3 class="page-header">{{test.testname}}</h3> 
+                </div>
+                <div class="col-sm-12">
+                    Your Score is:
+                    <br/>
+                    <h1>{{test.results.correctAnswers}}/{{test.results.totalScore}}</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

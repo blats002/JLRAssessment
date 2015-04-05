@@ -10,4 +10,5 @@ angular.module('JLRAssessment', [
   $routeProvider.when('/manualassessment', {templateUrl:'manualassessment.html',  reloadOnSearch: false});
   $routeProvider.when('/interview', {templateUrl:'interview.html',  reloadOnSearch: false});
   $routeProvider.when('/test/:testid/:pageid', {templateUrl: 'test.html',controller: 'TestController'});
+  $routeProvider.when('/test2/:testid/:pageid', {templateUrl: 'test2.html',controller: 'TestController'});
 });
