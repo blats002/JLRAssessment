@@ -5,13 +5,27 @@ function onDeviceReady() {
     document.addEventListener("backbutton", back, false);
 }
 
-function back(){
+function back() {
     mainCtrl.back();
+}
+
+function getTimeString(timeCount) {
+    var diff = timeCount;
+
+    // does the same job as parseInt truncates the float
+    var minutes = (diff / 60) | 0;
+    var seconds = (diff % 60) | 0;
+
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    seconds = seconds < 10 ? "0" + seconds : seconds;
+
+    return minutes + ":" + seconds;
 }
 
 
 var mainCtrl;
 var testCtrl;
+
 Array.prototype.shuffle = function () {
     var i = this.length, j, temp;
     if (i == 0)
@@ -26,8 +40,22 @@ Array.prototype.shuffle = function () {
 };
 
 angular.module('JLRAssessment.controllers.Main', [])
-        .controller('MainController', function ($scope) {
+        .controller('MainController', function ($scope, $rootScope, ngDialog) {
             mainCtrl = this;
+    
+//            mainCtrl.test1PageLinks = [];
+//            mainCtrl.test2PageLinks = [];
+            
+            mainCtrl.showTest1PageLinks = false;
+            mainCtrl.showTest2PageLinks = false;
+            
+//            for (var x = 0; x < 61; x++) {
+//                $scope.test1PageLinks.push(x+1);
+//            };
+//            for (var xx = 0; xx < 29; xx++) {
+//                $scope.test2PageLinks.push(xx+1);
+//            };
+    
             mainCtrl.back = function () {
                 window.history.go(-1);
                 mainCtrl.showPrevious = false;
@@ -35,19 +63,38 @@ angular.module('JLRAssessment.controllers.Main', [])
                 mainCtrl.showNext = false;
                 mainCtrl.showEnd = false;
                 mainCtrl.showButtonNav = false;
+                mainCtrl.showTest1PageLinks = false;
+                mainCtrl.showTest2PageLinks = false;
             };
-            
+
             mainCtrl.exit = function () {
                 navigator.app.exitApp();
             };
+            
+            mainCtrl.gotoPage = function (page) {
+                testCtrl.pageid = page;
+                mainCtrl.showPrevious = testCtrl.pageid > 1;
+                mainCtrl.showStart = testCtrl.pageid == 0;
+                mainCtrl.showNext = testCtrl.pageid > 0 && testCtrl.pageid < testCtrl.questions.length;
+                mainCtrl.showEnd = testCtrl.pageid == testCtrl.questions.length;
+                testCtrl.showStart = mainCtrl.showStart;
+            };
+            
             mainCtrl.showPrevious = false;
             mainCtrl.showStart = false;
             mainCtrl.showNext = false;
             mainCtrl.showEnd = false;
+
         })
-        .controller('TestController', function ($scope, $routeParams) {
+        .controller('TestController', function ($scope, $rootScope, $routeParams, ngDialog, $timeout) {
             mainCtrl.showButtonNav = true;
             testCtrl = this;
+            testCtrl.showModal1 = false;
+
+            testCtrl.closeTimeUpModal = function () {
+                testCtrl.timeUpModal = false;
+            }
+
             testCtrl.testid = parseInt($routeParams.testid, 10);
             testCtrl.pageid = parseInt($routeParams.pageid, 10);
             testCtrl.timed = $routeParams.timed === "true";
@@ -55,7 +102,7 @@ angular.module('JLRAssessment.controllers.Main', [])
                 {
                     id: 1,
                     name: 'Assessment 1',
-                    timed: true,
+                    timed: true,                  
                     description: "The following assessment tool is designed to assess your ability to pay attention to detail.\n\
 \n\
 For each item in the assessment, you will be presented with two sets of characters. Your task will be to examin the two sets carefully, and decide wehter or not they are identical.\n\
@@ -107,24 +154,33 @@ This test is not timed.",
             ];
             var id = testCtrl.tests[testCtrl.testid - 1].id;
             testCtrl.testname = testCtrl.tests[testCtrl.testid - 1].name;
-
             var tempArray = testCtrl.tests[testCtrl.testid - 1].questions;
             tempArray.shuffle();
             testCtrl.questions = new Array();
+            var timer = 0;
+            if (id === 1) {
+                timer = 60 * 4;
+            }
 
+            if (id === 3) {
+                timer = 60 * 9.5;
+            }
             if (id < 3) {
-                for (var x = 0; x < 60; x++) {
+                for (var x = 0; x < 61; x++) {
                     tempArray[x].selected = "none"
                     testCtrl.questions.push(tempArray[x]);
                 }
+                mainCtrl.showTest1PageLinks = true;
             } else {
                 for (var x = 0; x < 29; x++) {
                     var catQuestion = tempArray[x].questions[Math.floor(Math.random() * tempArray[x].questions.length)];
+//                    var catQuestion = tempArray[x].questions[0];
                     catQuestion.answer = "";
                     testCtrl.questions.push(catQuestion);
                 }
+                mainCtrl.showTest2PageLinks = true;
             }
-
+            
             testCtrl.description = testCtrl.tests[testCtrl.testid - 1].description;
             testCtrl.showResult = false;
             mainCtrl.showPrevious = testCtrl.pageid > 1;
@@ -135,11 +191,13 @@ This test is not timed.",
             testCtrl.showResult = false;
             testCtrl.results = {
                 correctAnswers: 0,
-                totalScore: 0
+                totalScore: 0,
+                passed: false
             };
             testCtrl.getResult = function () {
                 testCtrl.results.totalScore = testCtrl.questions.length;
                 var correct = 0;
+                var passed = false;
                 if (id < 3) {
                     for (var x = 0; x < testCtrl.results.totalScore; x++) {
                         var ans = new String(testCtrl.questions[x].Ans);
@@ -148,7 +206,9 @@ This test is not timed.",
                             correct = correct + 1;
                         }
                     }
-
+                    if(correct >= 50){
+                        passed = true;
+                    }
                 } else {
                     for (var x = 0; x < testCtrl.results.totalScore; x++) {
                         var CorrectAnswer = new String(testCtrl.questions[x].CorrectAnswer);
@@ -157,78 +217,123 @@ This test is not timed.",
                             correct = correct + 1;
                         }
                     }
+                    if(correct >= 18){
+                        passed = true;
+                    }
                 }
                 testCtrl.results.correctAnswers = correct;
+                testCtrl.results.passed = passed;
             };
+            testCtrl.testTime = timer;
+            testCtrl.timerCount = 0;
+            
+            testCtrl.getTimeElapsed = function(){
+                return getTimeString(testCtrl.timerCount)
+            };
+            
+            testCtrl.getTimeRemaining = function(){
+                return getTimeString(testCtrl.testTime - testCtrl.timerCount)
+            };
+
+            testCtrl.startTimer = function (timer) {
+//                testCtrl.timerCount = timer;
+                testCtrl.continueCount = true;
+
+                var countDown = function () {
+                    if(testCtrl.continueCount){
+                        if (testCtrl.timerCount === testCtrl.testTime) {
+                            //Any desired function upon countdown end.
+                            testCtrl.timeUpModal = true;
+                        } else {
+                            testCtrl.timerCount++;
+                            testCtrl.timedown = testCtrl.getTimeRemaining();
+                            $timeout(countDown, 1000);
+                        }
+                    }
+                };
+                testCtrl.timedown = testCtrl.getTimeRemaining();
+                countDown();
+            };
+
             mainCtrl.previous = function () {
-                testCtrl.pageid = testCtrl.pageid - 1;
-                mainCtrl.showPrevious = testCtrl.pageid > 1;
-                mainCtrl.showStart = testCtrl.pageid == 0;
-                mainCtrl.showNext = testCtrl.pageid > 0 && testCtrl.pageid < testCtrl.questions.length;
-                mainCtrl.showEnd = testCtrl.pageid == testCtrl.questions.length;
-                testCtrl.showStart = mainCtrl.showStart;
+                mainCtrl.gotoPage(testCtrl.pageid - 1);
             };
             mainCtrl.start = function () {
-                testCtrl.pageid = testCtrl.pageid + 1;
-                mainCtrl.showPrevious = testCtrl.pageid > 1;
-                mainCtrl.showStart = testCtrl.pageid == 0;
-                mainCtrl.showNext = testCtrl.pageid > 0 && testCtrl.pageid < testCtrl.questions.length;
-                mainCtrl.showEnd = testCtrl.pageid == testCtrl.questions.length;
-                testCtrl.showStart = mainCtrl.showStart;
+                mainCtrl.gotoPage(testCtrl.pageid + 1);
+                testCtrl.showTimer = false;
+                if (testCtrl.testTime > 0) {
+                    testCtrl.timerDisplay = "";
+                    testCtrl.startTimer(testCtrl.testTime);
+                    testCtrl.showTimer = true;
+                }
             };
             mainCtrl.next = function () {
-                testCtrl.pageid = testCtrl.pageid + 1;
-                mainCtrl.showPrevious = testCtrl.pageid > 1;
-                mainCtrl.showStart = testCtrl.pageid == 0;
-                mainCtrl.showNext = testCtrl.pageid > 0 && testCtrl.pageid < testCtrl.questions.length;
-                mainCtrl.showEnd = testCtrl.pageid == testCtrl.questions.length;
-                testCtrl.showStart = mainCtrl.showStart;
+                mainCtrl.gotoPage(testCtrl.pageid + 1);
             };
+            
             mainCtrl.submit = function () {
                 testCtrl.showResult = true;
                 mainCtrl.showPrevious = false;
                 mainCtrl.showStart = false;
                 mainCtrl.showNext = false;
                 mainCtrl.showEnd = false;
+                testCtrl.continueCount = false;
+//                testCtrl.showTimer = true;
                 testCtrl.getResult();
             };
+            testCtrl.submit = function () {
+                testCtrl.showTimer = false;
+                testCtrl.closeTimeUpModal()
+                mainCtrl.submit();
+            }
         });
+
 var assessment2questions = [
     {
         category: 1,
         questions: [
             {
-                question: "category 1 1of5",
+                patternquestion: "C B V H G K Y O P N A H G K L M Z X C W Q U G N B \n\
+1 2 5 8 7 4 1 2 0 3 0 9 8 5 6 3 2 1 0 2 5 4 1 5 9",
+                question:"Find the second digit (from the right). Look at the letter above that digit. Find the same letter along the row and enter the digit that appears below it.",
+                type: "pattern",
+                CorrectAnswer: '3',
+                answer: ""
+            }
+            ,
+            {
+                patternquestion: "A C V G F Y T Q A Z X D S L M K J N V B D G T S D\n\
+1 2 0 9 7 5 6 3 5 4 8 1 0 2 9 7 5 6 1 2 5 4 7 8 9",
+                question: "Find the second digit (from the right). Look at the letter above that digit. Find the same letter along the row and enter the digit that appears below it.",
                 type: "pattern",
                 CorrectAnswer: '0',
                 answer: ""
             }
             ,
             {
-                question: "category 1 2of5",
+                patternquestion: "Z X B C H G T R E W Q P L M N H B V G T F D S X P\n\
+1 0 9 8 7 6 4 8 5 7 2 7 4 0 9 1 2 8 3 7 4 8 4 2 3",
+                question: "Find the second digit (from the right). Look at the letter above that digit. Find the same letter along the row and enter the digit that appears below it.",
                 type: "pattern",
                 CorrectAnswer: '0',
                 answer: ""
             }
             ,
             {
-                question: "category 1 3of5",
+                patternquestion: "P O K G H B V C Z R D T S D H G K M N L P W E R Y\n\
+9 8 7 5 2 1 0 2 3 2 0 1 5 4 7 8 9 6 3 0 2 1 5 8 7",
+                question: "Find the second digit (from the right). Look at the letter above that digit. Find the same letter along the row and enter the digit that appears below it.",
                 type: "pattern",
-                CorrectAnswer: '0',
+                CorrectAnswer: '2',
                 answer: ""
             }
             ,
             {
-                question: "category 1 4of5",
+                patternquestion: "P L M N K O I J Z V H U Y G C F T R E W Q A S Z X\n\
+5 9 8 7 4 6 3 0 1 2 9 8 7 4 5 2 1 4 8 9 6 3 2 0 1",
+                question: "Find the second digit (from the right). Look at the letter above that digit. Find the same letter along the row and enter the digit that appears below it.",
                 type: "pattern",
-                CorrectAnswer: '0',
-                answer: ""
-            }
-            ,
-            {
-                question: "category 1 5of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                CorrectAnswer: '1',
                 answer: ""
             }
         ]
@@ -238,38 +343,48 @@ var assessment2questions = [
         category: 2,
         questions: [
             {
-                question: "category 2 1of5",
+                patternquestion: "Q P W L D N B J G Y A F U D H W Y B M D L X Z Q R\n\
+6 5 9 8 7 4 5 6 2 3 0 1 4 8 9 6 3 0 2 1 5 8 7 9 5",
+                question: "Find the ninth letter (from the left), enter the digit that appears below it.",
                 type: "pattern",
-                CorrectAnswer: '0',
+                CorrectAnswer: '2',
                 answer: ""
 
             }
             ,
             {
-                question: "category 2 2of5",
+                patternquestion: "Q P G J N C V Z H F M Q O G H S C Z F Q J B L M D\n\
+5 9 8 7 9 5 2 1 0 1 2 3 6 5 2 0 1 4 8 9 7 5 2 0 3",
+                question: "Find the ninth letter (from the left), enter the digit that appears below it.",
                 type: "pattern",
                 CorrectAnswer: '0',
                 answer: ""
             }
             ,
             {
-                question: "category 2 3of5",
+                patternquestion: "H D C Z X Q P L M J N V H B Y T R F K B X C M L S\n\
+6 0 1 7 1 2 4 5 2 3 8 4 3 6 6 8 8 2 2 4 8 2 6 6 8",
+                question: "Find the ninth letter (from the left), enter the digit that appears below it.",
                 type: "pattern",
-                CorrectAnswer: '0',
+                CorrectAnswer: '2',
                 answer: ""
             }
             ,
             {
-                question: "category 2 4of5",
+                patternquestion: "N N G Z Q M L S L A D E G K E C B Q U Q S O B H T\n\
+2 7 9 4 5 9 0 2 8 2 1 4 8 7 9 2 2 8 0 2 8 9 5 7 2",
+                question: "Find the ninth letter (from the left), enter the digit that appears below it.",
                 type: "pattern",
-                CorrectAnswer: '0',
+                CorrectAnswer: '8',
                 answer: ""
             }
             ,
             {
-                question: "category 2 5of5",
+                patternquestion: "M G S I L E G C Q Z U M N V L R I U K X A O I L V\n\
+4 2 9 6 9 4 2 4 4 9 0 7 0 8 5 9 3 5 1 8 1 3 6 8 7",
+                question: "Find the ninth letter (from the left), enter the digit that appears below it.",
                 type: "pattern",
-                CorrectAnswer: '0',
+                CorrectAnswer: '4',
                 answer: ""
             }
         ]
@@ -279,38 +394,48 @@ var assessment2questions = [
         category: 3,
         questions: [
             {
-                question: "category 3 1of5",
+                patternquestion: "Q P W L D N B J G Y A F U D H W Y B M D L X Z Q R\n\
+6 5 9 8 7 4 5 6 2 3 0 1 4 8 9 6 3 0 2 1 5 8 7 9 5",
+                question: "If the first and the last digits are the same, enter \"500\"; if they are different, enter \"10\".",
                 type: "pattern",
-                CorrectAnswer: '0',
+                CorrectAnswer: '10',
                 answer: ""
 
             }
             ,
             {
-                question: "category 3 2of5",
+                patternquestion: "Q P G J N C V Z H F M Q O G H S C Z F Q J B L M D\n\
+5 9 8 7 9 5 2 1 0 1 2 3 6 5 2 0 1 4 8 9 7 5 2 0 5",
+                question: "If the first and the last digits are the same, enter \"500\"; if they are different, enter \"10\".",
                 type: "pattern",
-                CorrectAnswer: '0',
+                CorrectAnswer: '500',
                 answer: ""
             }
             ,
             {
-                question: "category 3 3of5",
+                patternquestion: "H D C Z X Q P L M J N V H B Y T R F K B X C M L S\n\
+6 0 1 7 1 2 4 5 2 3 8 4 3 6 6 8 8 2 2 4 8 2 6 6 8",
+                question: "If the first and the last digits are the same, enter \"500\"; if they are different, enter \"10\".",
                 type: "pattern",
-                CorrectAnswer: '0',
+                CorrectAnswer: '10',
                 answer: ""
             }
             ,
             {
-                question: "category 3 4of5",
+                patternquestion: "N N G Z Q M L S L A D E G K E C B Q U Q S O B H T\n\
+2 7 9 4 5 9 0 2 8 2 1 4 8 7 9 2 2 8 0 2 8 9 5 7 2",
+                question: "If the first and the last digits are the same, enter \"500\"; if they are different, enter \"10\".",
                 type: "pattern",
-                CorrectAnswer: '0',
+                CorrectAnswer: '500',
                 answer: ""
             }
             ,
             {
-                question: "category 3 5of5",
+                patternquestion: "M G S I L E G C Q Z U M N V L R I U K X A O I L V\n\
+4 2 9 6 9 4 2 4 4 9 0 7 0 8 5 9 3 5 1 8 1 3 6 8 7",
+                question: "If the first and the last digits are the same, enter \"500\"; if they are different, enter \"10\".",
                 type: "pattern",
-                CorrectAnswer: '0',
+                CorrectAnswer: '10',
                 answer: ""
             }
         ]
@@ -320,38 +445,48 @@ var assessment2questions = [
         category: 4,
         questions: [
             {
-                question: "category 4 1of5",
+                patternquestion: "Q P W L D N B J G Y A F U D H W Y W M D L X Z Q R\n\
+6 5 9 8 7 4 5 6 2 3 0 1 4 8 9 6 3 0 2 1 5 8 7 9 5",
+                question: "Enter the number that is under the letter, which appears between two Ws.",
                 type: "pattern",
-                CorrectAnswer: '0',
+                CorrectAnswer: '3',
                 answer: ""
 
             }
             ,
             {
-                question: "category 4 2of5",
+                patternquestion: "Q P G J N C V Z H F M Q O G H S C Z C Q J B L M D\n\
+5 9 8 7 9 5 2 1 0 1 2 3 6 5 2 0 1 4 8 9 7 5 2 0 5",
+                question: "Enter the number that is under the letter, which appears between two Cs.",
                 type: "pattern",
-                CorrectAnswer: '0',
+                CorrectAnswer: '4',
                 answer: ""
             }
             ,
             {
-                question: "category 4 3of5",
+                patternquestion: "H D C Z X Q P L M J N V H B Y T R T K B X C M L S\n\
+6 0 1 7 1 2 4 5 2 3 8 4 3 6 6 8 8 2 2 4 8 2 6 6 8",
+                question: "Enter the number that is under the letter, which appears between two Ts.",
                 type: "pattern",
-                CorrectAnswer: '0',
+                CorrectAnswer: '8',
                 answer: ""
             }
             ,
             {
-                question: "category 4 4of5",
+                patternquestion: "N N G Z Q M L S L A D E G K E C B Q B Q S O B H T\n\
+2 7 9 4 5 9 0 2 8 2 1 4 8 7 9 2 2 8 0 2 8 9 5 7 2",
+                question: "Enter the number that is under the letter, which appears between two Bs.",
                 type: "pattern",
-                CorrectAnswer: '0',
+                CorrectAnswer: '8',
                 answer: ""
             }
             ,
             {
-                question: "category 4 5of5",
+                patternquestion: "M G S I L E G C Q Z U M N V L R I R K X A O I L V\n\
+4 2 9 6 9 4 2 4 4 9 0 7 0 8 5 9 3 5 1 8 1 3 6 8 7",
+                question: "Enter the number that is under the letter, which appears between two Rs.",
                 type: "pattern",
-                CorrectAnswer: '0',
+                CorrectAnswer: '3',
                 answer: ""
             }
         ]
@@ -361,38 +496,48 @@ var assessment2questions = [
         category: 5,
         questions: [
             {
-                question: "category 5 1of5",
+                patternquestion: "Q P W L D N B J G Y A F U D H W Y W M D L X Z Q R\n\
+6 5 9 8 7 4 5 6 2 3 0 1 4 8 9 6 3 0 2 1 5 8 7 9 5",
+                question: "Enter the digit that appears below L and immediately to the right of digit 7.",
                 type: "pattern",
-                CorrectAnswer: '0',
+                CorrectAnswer: '84',
                 answer: ""
 
             }
             ,
             {
-                question: "category 5 2of5",
+                patternquestion: "Q P G J N C V Z H F M Q O G H S C Z C Q J B L M D\n\
+5 9 8 7 9 5 2 1 0 1 2 3 6 5 2 0 1 4 8 9 7 5 2 0 5",
+                question: "Enter the digit that appears below Z and immediately to the right of digit 0.",
                 type: "pattern",
-                CorrectAnswer: '0',
+                CorrectAnswer: '11',
                 answer: ""
             }
             ,
             {
-                question: "category 5 3of5",
+                patternquestion: "H D C Z X Q P L M J N V H B Y T R T K B X C M L S\n\
+6 0 1 7 1 2 4 5 2 3 8 4 3 6 6 8 8 2 2 4 8 2 6 6 8",
+                question: "Enter the digit that appears below P and immediately to the right of digit 5.",
                 type: "pattern",
-                CorrectAnswer: '0',
+                CorrectAnswer: '42',
                 answer: ""
             }
             ,
             {
-                question: "category 5 4of5",
+                patternquestion: "N N G Z Q M L S L A D E G K E C B Q B Q S O B H T\n\
+2 7 9 4 5 9 0 2 8 2 1 4 8 7 9 2 2 8 0 2 8 9 5 7 2",
+                question: "Enter the digit that appears below Q and immediately to the right of digit 9.",
                 type: "pattern",
-                CorrectAnswer: '0',
+                CorrectAnswer: '50',
                 answer: ""
             }
             ,
             {
-                question: "category 5 5of5",
+                patternquestion: "M G S I L E G C Q Z U M N V L R I R K X A O I L V\n\
+4 2 9 6 9 4 2 4 4 9 0 7 0 8 5 9 3 5 1 8 1 3 6 8 7",
+                question: "Enter the digit that appears below G and immediately to the right of digit 4.",
                 type: "pattern",
-                CorrectAnswer: '0',
+                CorrectAnswer: '20',
                 answer: ""
             }
         ]
@@ -402,38 +547,48 @@ var assessment2questions = [
         category: 6,
         questions: [
             {
-                question: "category 6 1of5",
+                patternquestion: "Q P W L D N B J G Y A F U D H W Y W M D L X Z Q R\n\
+6 5 9 8 7 4 5 6 2 3 0 1 4 8 9 6 3 0 2 1 5 8 7 9 5",
+                question: "Find the digits under \"WMD\". If there is a digit among them larger than 5, enter that digit. If there is no digit larger than 5, enter 8.",
                 type: "pattern",
-                CorrectAnswer: '0',
+                CorrectAnswer: '8',
                 answer: ""
 
             }
             ,
             {
-                question: "category 6 2of5",
+                patternquestion: "Q P G J N C V Z H F M Q O G H S C Z C Q J B L M D\n\
+5 9 8 7 9 5 2 1 0 1 2 3 6 5 2 0 1 4 8 9 7 5 2 0 5",
+                question: "Find the digits under \"MQO\". If there is a digit among them larger than 5, enter that digit. If there is no digit larger than 5, enter 9.",
                 type: "pattern",
-                CorrectAnswer: '0',
+                CorrectAnswer: '6',
                 answer: ""
             }
             ,
             {
-                question: "category 6 3of5",
+                patternquestion: "H D C Z X Q P L M J N V H B Y T R T K B X C M L S\n\
+6 0 1 7 1 2 4 5 2 3 8 4 3 6 6 8 8 2 2 4 8 2 6 6 8",
+                question: "Find the digits under \"TRT\". If there is a digit among them larger than 5, enter that digit. If there is no digit larger than 5, enter 4.",
                 type: "pattern",
-                CorrectAnswer: '0',
+                CorrectAnswer: '8',
                 answer: ""
             }
             ,
             {
-                question: "category 6 4of5",
+                patternquestion: "N N G Z Q M L S L A D E G K E C B Q B Q S O B H T\n\
+2 7 9 4 5 9 0 2 8 2 1 4 8 7 9 2 2 4 0 2 8 9 5 7 2",
+                question: "Find the digits under \"CBQ\". If there is a digit among them larger than 5, enter that digit. If there is no digit larger than 5, enter 9.",
                 type: "pattern",
-                CorrectAnswer: '0',
+                CorrectAnswer: '9',
                 answer: ""
             }
             ,
             {
-                question: "category 6 5of5",
+                patternquestion: "M G S I L E G C Q Z U M N V L R I R K X A O I L V\n\
+4 2 9 6 9 4 2 4 4 9 0 7 0 8 5 9 3 5 1 8 1 3 6 8 7",
+                question: "Find the digits under \"GCQ\". If there is a digit among them larger than 5, enter that digit. If there is no digit larger than 5, enter 6.",
                 type: "pattern",
-                CorrectAnswer: '0',
+                CorrectAnswer: '6',
                 answer: ""
             }
         ]
@@ -443,38 +598,48 @@ var assessment2questions = [
         category: 7,
         questions: [
             {
-                question: "category 7 1of5",
+                patternquestion: "Q P W L D N B J G Y A F U D H W Y B M D L X Z Q R\n\
+6 5 9 8 7 4 5 6 2 3 0 1 4 8 9 6 3 0 2 1 5 8 7 9 5",
+                question: "Find the 4th digit (from the left side), look at the letter that is above that digit. Find the second letter to the left of it. Enter the digit that appears under it.",
                 type: "pattern",
-                CorrectAnswer: '0',
+                CorrectAnswer: '5',
                 answer: ""
 
             }
             ,
             {
-                question: "category 7 2of5",
+                patternquestion: "Q P G J N C V Z H F M Q O G H S C Z F Q J B L M D\n\
+5 9 8 7 9 5 2 1 0 1 2 3 6 5 2 0 1 4 8 9 7 5 2 0 3",
+                question: "Find the 4th digit (from the left side), look at the letter that is above that digit. Find the second letter to the left of it. Enter the digit that appears under it.",
+                type: "pattern",
+                CorrectAnswer: '9',
+                answer: ""
+            }
+            ,
+            {
+                patternquestion: "H D C Z X Q P L M J N V H B Y T R F K B X C M L S\n\
+6 0 1 7 1 2 4 5 2 3 8 4 3 6 6 8 8 2 2 4 8 2 6 6 8",
+                question: "Find the 4th digit (from the left side), look at the letter that is above that digit. Find the second letter to the left of it. Enter the digit that appears under it.",
                 type: "pattern",
                 CorrectAnswer: '0',
                 answer: ""
             }
             ,
             {
-                question: "category 7 3of5",
+                patternquestion: "N N G Z Q M L S L A D E G K E C B Q U Q S O B H T\n\
+2 7 9 4 5 9 0 2 8 2 1 4 8 7 9 2 2 8 0 2 8 9 5 7 2",
+                question: "Find the 4th digit (from the left side), look at the letter that is above that digit. Find the second letter to the left of it. Enter the digit that appears under it.",
                 type: "pattern",
-                CorrectAnswer: '0',
+                CorrectAnswer: '7',
                 answer: ""
             }
             ,
             {
-                question: "category 7 4of5",
+                patternquestion: "M G S I L E G C Q Z U M N V L R I U K X A O I L V\n\
+4 2 9 6 9 4 2 4 4 9 0 7 0 8 5 9 3 5 1 8 1 3 6 8 7",
+                question: "Find the 4th digit (from the left side), look at the letter that is above that digit. Find the second letter to the left of it. Enter the digit that appears under it.",
                 type: "pattern",
-                CorrectAnswer: '0',
-                answer: ""
-            }
-            ,
-            {
-                question: "category 7 5of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                CorrectAnswer: '2',
                 answer: ""
             }
         ]
@@ -484,7 +649,9 @@ var assessment2questions = [
         category: 8,
         questions: [
             {
-                question: "category 8 1of5",
+                patternquestion: "Q P W L D N B J G Y A F U D H W Y B M D L X Z Q R\n\
+6 5 9 8 7 4 5 6 2 3 0 1 4 8 9 6 3 0 2 1 5 8 7 8 5",
+                question: "Find the digit that appears between the 8s. Find the fifth letter to the left of the letter above that digit, and enter the digit that appears under it.",
                 type: "pattern",
                 CorrectAnswer: '0',
                 answer: ""
@@ -492,30 +659,38 @@ var assessment2questions = [
             }
             ,
             {
-                question: "category 8 2of5",
+                patternquestion: "Q P G J N C V Z H F M Q O G H S C Z F Q J B L M D\n\
+5 9 8 7 9 5 2 1 0 1 2 3 6 5 2 0 1 4 8 9 7 5 2 0 2",
+                question: "Find the digit that appears between the 2s. Find the fifth letter to the left of the letter above that digit, and enter the digit that appears under it.",
+                type: "pattern",
+                CorrectAnswer: '8',
+                answer: ""
+            }
+            ,
+            {
+                patternquestion: "H D C Z X Q P L M J N V H B Y T R F K B X C M L S\n\
+6 0 1 7 1 2 4 5 2 3 8 4 3 6 1 8 8 2 2 4 8 2 6 5 6",
+                question: "Find the digit that appears between the 6s. Find the fifth letter to the left of the letter above that digit, and enter the digit that appears under it.",
+                type: "pattern",
+                CorrectAnswer: '2',
+                answer: ""
+            }
+            ,
+            {
+                patternquestion: "N N G Z Q M L S L A D E G K E C B Q U Q S O B H T\n\
+2 7 9 4 5 9 0 2 8 2 1 4 8 7 9 2 2 8 0 2 8 9 5 7 5",
+                question: "Find the digit that appears between the 5s. Find the fifth letter to the left of the letter above that digit, and enter the digit that appears under it.",
                 type: "pattern",
                 CorrectAnswer: '0',
                 answer: ""
             }
             ,
             {
-                question: "category 8 3of5",
+                patternquestion: "M G S I L E G C Q Z U M N V L R I U K X A O I L V\n\
+4 2 9 6 9 4 2 4 4 9 0 7 0 8 5 9 3 5 1 8 1 3 7 8 7",
+                question: "Find the digit that appears between the 7s. Find the fifth letter to the left of the letter above that digit, and enter the digit that appears under it.",
                 type: "pattern",
-                CorrectAnswer: '0',
-                answer: ""
-            }
-            ,
-            {
-                question: "category 8 4of5",
-                type: "pattern",
-                CorrectAnswer: '0',
-                answer: ""
-            }
-            ,
-            {
-                question: "category 8 5of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                CorrectAnswer: '1',
                 answer: ""
             }
         ]
@@ -525,38 +700,48 @@ var assessment2questions = [
         category: 9,
         questions: [
             {
-                question: "category 9 1of5",
+                patternquestion: "Q P W L D N B J G Y A F U D H W Y B M D L X Z Q R\n\
+6 5 9 8 7 4 5 6 2 3 0 1 4 8 9 6 3 0 2 1 5 8 7 8 5",
+                question: "Find the word \"FUD\", add the digits that appear under this word, and enter the outcome.",
                 type: "pattern",
-                CorrectAnswer: '0',
+                CorrectAnswer: '13',
                 answer: ""
 
             }
             ,
             {
-                question: "category 9 2of5",
+                patternquestion: "Q P G J N C V Z H F M Q O G O S C Z F Q J B L M D\n\
+5 9 8 7 9 5 2 1 0 1 2 3 6 5 2 0 1 4 8 9 7 5 2 0 2",
+                question: "Find the word \"GOS\", add the digits that appear under this word, and enter the outcome.",
                 type: "pattern",
-                CorrectAnswer: '0',
+                CorrectAnswer: '7',
                 answer: ""
             }
             ,
             {
-                question: "category 9 3of5",
+                patternquestion: "H D C Z X Q P L M J N V H B Y E R F K B X C M L S\n\
+6 0 1 7 1 2 4 5 2 3 8 4 3 6 1 8 8 2 2 4 8 2 6 5 6",
+                question: "Find the word \"BYE\", add the digits that appear under this word, and enter the outcome.",
                 type: "pattern",
-                CorrectAnswer: '0',
+                CorrectAnswer: '15',
                 answer: ""
             }
             ,
             {
-                question: "category 9 4of5",
+                patternquestion: "N N G Z Q M L S L A D E G K E C B Q U Q S O B H T\n\
+2 7 9 4 5 9 0 2 8 2 1 4 8 7 9 2 2 8 0 2 8 9 5 7 5",
+                question: "Find the word \"LAD\", add the digits that appear under this word, and enter the outcome.",
                 type: "pattern",
-                CorrectAnswer: '0',
+                CorrectAnswer: '11',
                 answer: ""
             }
             ,
             {
-                question: "category 9 5of5",
+                patternquestion: "M G S I L E G C Q Z U M N V L R I U K X A O I L V\n\
+4 2 9 6 9 4 2 4 4 9 0 7 0 8 5 9 3 5 1 8 1 3 7 8 7",
+                question: "Find the word \"OIL\", add the digits that appear under this word, and enter the outcome.",
                 type: "pattern",
-                CorrectAnswer: '0',
+                CorrectAnswer: '18',
                 answer: ""
             }
         ]
@@ -566,38 +751,48 @@ var assessment2questions = [
         category: 10,
         questions: [
             {
-                question: "category 10 1of5",
+                patternquestion: "Q P W L P N B J G P A F U D P W Y B M D P X Z Q R\n\
+6 5 9 8 7 4 5 6 2 3 0 1 4 8 9 6 3 0 2 1 5 8 7 8 5",
+                question: "Count how many times P appears just after L. Multiply the outcome by 9 and enter the result.",
                 type: "pattern",
-                CorrectAnswer: '0',
+                CorrectAnswer: '36',
                 answer: ""
 
             }
             ,
             {
-                question: "category 10 2of5",
+                patternquestion: "J P G J N C V Z H F M Q J G O S C Z F Q J B L M D\n\
+5 9 8 7 9 5 2 1 0 1 2 3 6 5 2 0 1 4 8 9 7 5 2 0 2",
+                question: "Count how many times J appears just after G. Multiply the outcome by 6 and enter the result.",
                 type: "pattern",
-                CorrectAnswer: '0',
+                CorrectAnswer: '18',
                 answer: ""
             }
             ,
             {
-                question: "category 10 3of5",
+                patternquestion: "H D C Z X H P L M J N V H B Y E R H K B X C H L S\n\
+6 0 1 7 1 2 4 5 2 3 8 4 3 6 1 8 8 2 2 4 8 2 6 5 6",
+                question: "Count how many times H appears just after Z. Multiply the outcome by 8 and enter the result.",
                 type: "pattern",
-                CorrectAnswer: '0',
+                CorrectAnswer: '32',
                 answer: ""
             }
             ,
             {
-                question: "category 10 4of5",
+                patternquestion: "N N G Z Q M L N L A D E G K E C N Q U Q S O B H N\n\
+2 7 9 4 5 9 0 2 8 2 1 4 8 7 9 2 2 8 0 2 8 9 5 7 5",
+                question: "Count how many times N appears just after Q. Multiply the outcome by 4 and enter the result.",
                 type: "pattern",
-                CorrectAnswer: '0',
+                CorrectAnswer: '12',
                 answer: ""
             }
             ,
             {
-                question: "category 10 5of5",
+                patternquestion: "L G S I L E G C Q L U M N V L R I U K X A O I L V\n\
+4 2 9 6 9 4 2 4 4 9 0 7 0 8 5 9 3 5 1 8 1 3 7 8 7",
+                question: "Count how many times L appears just after S. Multiply the outcome by 7 and enter the result.",
                 type: "pattern",
-                CorrectAnswer: '0',
+                CorrectAnswer: '28',
                 answer: ""
             }
         ]
@@ -607,6 +802,7 @@ var assessment2questions = [
         category: 11,
         questions: [
             {
+                patternquestion: "",
                 question: "category 11 1of5",
                 type: "pattern",
                 CorrectAnswer: '0',
@@ -1549,7 +1745,7 @@ var assessment1questions = [
     {question: "Find whether two sets are identical:\n\n $$555/$$555                           $$555/$$555\n",
         type: "trueorfalse", Ans: "Identical"}
     ,
-    {question: "Find whether two sets are identical:\n\n :5170:2380:                           :5170:2380:\n",
+    {question: "Find whether two sets are identical:\n\n 65265974:                               65265974:\n",
         type: "trueorfalse", Ans: "Identical"}
     ,
     {question: "Find whether two sets are identical:\n\n (8146/26-10)                         (8146/26-10)\n",
