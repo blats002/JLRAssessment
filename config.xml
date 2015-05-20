@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.jlr.assessment" version="0.0.1">
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.jlr.assessment" version="0.0.2">
     <name>JLR Assessment</name>
     <description>
         Hello World sample application that responds to the deviceready event.
