@@ -81,14 +81,13 @@
             </div>
             <div ng-show="(main.showNext || main.showEnd) && main.showTest1PageLinks" class="btn-group pull-right" ui-yield-to="navbarAction">
                 <a ui-turn-on='myDropdown' class='btn btn-navbar'>Jump to <i class="fa fa-caret-down"></i></a>
-                <ul class="dropdown-menu scrollable-content" 
+                <ul class="dropdown-menu scrollable-content mymenu" 
                     ui-outer-click="Ui.turnOff('myDropdown')" 
                     ui-outer-click-if="Ui.active('myDropdown')" 
                     role="menu" 
                     ui-show="myDropdown" 
                     ui-state="myDropdown" 
-                    ui-turn-off="myDropdown"
-                    style="height: 500%">
+                    ui-turn-off="myDropdown">
                     <li><a ng-click="main.gotoPage(1)" class="mymenuitem">Question 1</a></li>
                     <li><a ng-click="main.gotoPage(2)" class="mymenuitem">Question 2</a></li>
                     <li><a ng-click="main.gotoPage(3)" class="mymenuitem">Question 3</a></li>
