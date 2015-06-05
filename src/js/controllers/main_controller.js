@@ -155,7 +155,6 @@ This test is not timed.",
             var id = testCtrl.tests[testCtrl.testid - 1].id;
             testCtrl.testname = testCtrl.tests[testCtrl.testid - 1].name;
             var tempArray = testCtrl.tests[testCtrl.testid - 1].questions;
-            tempArray.shuffle();
             testCtrl.questions = new Array();
             var timer = 0;
             if (id === 1) {
@@ -166,6 +165,7 @@ This test is not timed.",
                 timer = 60 * 9.5;
             }
             if (id < 3) {
+                tempArray.shuffle();
                 for (var x = 0; x < 61; x++) {
                     tempArray[x].selected = "none"
                     testCtrl.questions.push(tempArray[x]);
@@ -1580,300 +1580,611 @@ var assessment2questions = [
 ];
 
 var assessment1questions = [
-    {question: "Find whether two sets are identical:\n\n 4824                                          4842\n",
-        type: "trueorfalse", Ans: 'Not Identical'}
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "4824",
+        patternquestion1: "4842",
+        type: "trueorfalse", 
+        Ans: 'Not Identical'}
     ,
-    {question: "Find whether two sets are identical:\n\n 89472                                        89472\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "89472",
+        patternquestion1: "89472",
+        type: "trueorfalse", 
+        Ans: "Identical"}
+    ,
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "62958",
+        patternquestion1: "622",
+        type: "trueorfalse", 
+        Ans: "Not Identical"}
+    ,
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "101000",
+        patternquestion1: "10100",
+        type: "trueorfalse", 
+        Ans: "Not Identical"}
+    ,
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "671242",
+        patternquestion1: "671249",
+        type: "trueorfalse", 
+        Ans: "Not Identical"}
+    ,
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "12%89",
+        patternquestion1: "12%88",
+        type: "trueorfalse", 
+        Ans: "Not Identical"}
+    ,
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "ntb/3701",
+        patternquestion1: "ntb/3701",
+        type: "trueorfalse", 
+        Ans: "Identical"}
+    ,
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "459(9+2)",
+        patternquestion1: "459(9+2)",
+        type: "trueorfalse", 
+        Ans: "Identical"}
+    ,
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "5643|72",
+        patternquestion1: "5643/72",
+        type: "trueorfalse", 
+        Ans: "Not Identical"}
+    ,
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "912?45",
+        patternquestion1: "912345",
+        type: "trueorfalse", 
+        Ans: "Not Identical"}
+    ,
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "*32890*",
+        patternquestion1: "*32899*",
+        type: "trueorfalse", 
+        Ans: "Not Identical"}
+    ,
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "86+ABC÷009",
+        patternquestion1: "86+ABC÷009",
+        type: "trueorfalse", 
+        Ans: "Identical"}
+    ,
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "746#586&9",
+        patternquestion1: "746#586&9",
+        type: "trueorfalse", 
+        Ans: "Identical"}
+    ,
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "(5838+78)_258",
+        patternquestion1: "(5838+78_258",
+        type: "trueorfalse", 
+        Ans: "Not Identical"}
+    ,
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "‘9/6*9/9’",
+        patternquestion1: "‘9/6*9/9’",
         type: "trueorfalse", Ans: "Identical"}
     ,
-    {question: "Find whether two sets are identical:\n\n 62958                                          622\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "(q1-s2)+(q1-82)",
+        patternquestion1: "(q1-s2)+(q1-92)",
         type: "trueorfalse", Ans: "Not Identical"}
     ,
-    {question: "Find whether two sets are identical:\n\n 101000                                       10100\n",
-        type: "trueorfalse", Ans: "Not Identical"}
-    ,
-    {question: "Find whether two sets are identical:\n\n 671242                                      671249\n",
-        type: "trueorfalse", Ans: "Not Identical"}
-    ,
-    {question: "Find whether two sets are identical:\n\n 12%89                                        12%88\n",
-        type: "trueorfalse", Ans: "Not Identical"}
-    ,
-    {question: "Find whether two sets are identical:\n\n ntb/3701                                  ntb/3701\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "(-3+5)i–(2-7)j",
+        patternquestion1: "(-3+5)i–(2-7)j",
         type: "trueorfalse", Ans: "Identical"}
     ,
-    {question: "Find whether two sets are identical:\n\n 459(9+2)                                  459(9+2)\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "A x b x b",
+        patternquestion1: "A x b x d",
+        type: "trueorfalse", Ans: "Not Identical"}
+    ,
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "sina+sinD",
+        patternquestion1: "sina+sinB",
+        type: "trueorfalse", Ans: "Not Identical"}
+    ,
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "L.(di/dt) + Ri",
+        patternquestion1: "L.(di/dt) +R",
+        type: "trueorfalse", Ans: "Not Identical"}
+    ,
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "Ylogydx + (x-logy)",
+        patternquestion1: "Ylogydx + (x-logy)",
+        type: "trueorfalse", Ans: "Not Identical"}
+    ,
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "(xsec2y – x2cosy)dy",
+        patternquestion1: "(xsec2y – x2cosx)dy",
+        type: "trueorfalse", Ans: "Not Identical"}
+    ,
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "(a.b) X (b.c) X (c.b)",
+        patternquestion1: "(a.b) X (b.c) X (c.d)",
+        type: "trueorfalse", Ans: "Not Identical"}
+    ,
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "4.687-2.689=0.290",
+        patternquestion1: "4.867-2.689=0.290",
         type: "trueorfalse", Ans: "Identical"}
     ,
-    {question: "Find whether two sets are identical:\n\n 5643|72                                    5643/72\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "[{6*p}- 4g&192d]",
+        patternquestion1: "[{6*p}-4g&192a]",
         type: "trueorfalse", Ans: "Not Identical"}
     ,
-    {question: "Find whether two sets are identical:\n\n 912?45                                      912345\n",
-        type: "trueorfalse", Ans: "Not Identical"}
-    ,
-    {question: "Find whether two sets are identical:\n\n *32890*                                    *32899*\n",
-        type: "trueorfalse", Ans: "Not Identical"}
-    ,
-    {question: "Find whether two sets are identical:\n\n 86+ABC÷009                              86+ABC÷009\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "θβα£≤÷×ϳ©",
+        patternquestion1: "θβα£≤÷×ϳ©",
         type: "trueorfalse", Ans: "Identical"}
     ,
-    {question: "Find whether two sets are identical:\n\n 746#586&9                                746#586&9\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "(20.46a@bb)-53",
+        patternquestion1: "(20.46a@bb-53",
+        type: "trueorfalse", Ans: "Not Identical"}
+    ,
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "#a0b9#c31",
+        patternquestion1: "#a0b9#c3!",
+        type: "trueorfalse", Ans: "Not Identical"}
+    ,
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "(α+β)2 = α20 + β83",
+        patternquestion1: "(α+β)2 = α20 + β83",
         type: "trueorfalse", Ans: "Identical"}
     ,
-    {question: "Find whether two sets are identical:\n\n (5838+78)_258                         (5838+78_258\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "(a.bcosθ)  x (c.dcosθ)",
+        patternquestion1: "(a.bcosφ)  x (c.dcosθ)",
         type: "trueorfalse", Ans: "Not Identical"}
     ,
-    {question: "Find whether two sets are identical:\n\n ‘9/6*9/9’                                  ‘9/6*9/9’\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "//piyr///*(2+}a{feuw)",
+        patternquestion1: "//piyr///*(2+}a{feuw)",
         type: "trueorfalse", Ans: "Identical"}
     ,
-    {question: "Find whether two sets are identical:\n\n (q1-s2)+(q1-82)                    (q1-s2)+(q1-92)\n",
-        type: "trueorfalse", Ans: "Not Identical"}
-    ,
-    {question: "Find whether two sets are identical:\n\n (-3+5)i–(2-7)j                      (-3+5)i–(2-7)j\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "seca.cosecg/=tanb\*cotd",
+        patternquestion1: "seca.cosecg/=tanb\*cotd",
         type: "trueorfalse", Ans: "Identical"}
     ,
-    {question: "Find whether two sets are identical:\n\n A x b x b                                A x b x d\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "192.168:184.160",
+        patternquestion1: "192.168.184.160",
         type: "trueorfalse", Ans: "Not Identical"}
     ,
-    {question: "Find whether two sets are identical:\n\n sina+sinD                                sina+sinB\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "{9/3 + 4a +4.a",
+        patternquestion1: "{9/3 + 4a +4a",
         type: "trueorfalse", Ans: "Not Identical"}
     ,
-    {question: "Find whether two sets are identical:\n\n L.(di/dt) + Ri                        L.(di/dt) +R\n",
-        type: "trueorfalse", Ans: "Not Identical"}
-    ,
-    {question: "Find whether two sets are identical:\n\n Ylogydx + (x-logy)              Ylogydx + (x-logy)\n",
-        type: "trueorfalse", Ans: "Not Identical"}
-    ,
-    {question: "Find whether two sets are identical:\n\n (xsec2y – x2cosy)dy            (xsec2y – x2cosx)dy\n",
-        type: "trueorfalse", Ans: "Not Identical"}
-    ,
-    {question: "Find whether two sets are identical:\n\n (a.b) X (b.c) X (c.b)        (a.b) X (b.c) X (c.d)\n",
-        type: "trueorfalse", Ans: "Not Identical"}
-    ,
-    {question: "Find whether two sets are identical:\n\n 4.687-2.689=0.290                4.867-2.689=0.290\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "9-6+abc @d5++",
+        patternquestion1: "9-6+abc @d5++",
         type: "trueorfalse", Ans: "Identical"}
     ,
-    {question: "Find whether two sets are identical:\n\n [{6*p}- 4g&192d]                   [{6*p}-4g&192a]\n",
-        type: "trueorfalse", Ans: "Not Identical"}
-    ,
-    {question: "Find whether two sets are identical:\n\n θβα£≤÷×ϳ©                               θβα£≤÷×ϳ©\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "5689Xiuyt+X",
+        patternquestion1: "5689Xiuyt+X",
         type: "trueorfalse", Ans: "Identical"}
     ,
-    {question: "Find whether two sets are identical:\n\n (20.46a@bb)-53                      (20.46a@bb-53\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "6756-(6789 x 9878]",
+        patternquestion1: "6756-(6789 x 9878",
         type: "trueorfalse", Ans: "Not Identical"}
     ,
-    {question: "Find whether two sets are identical:\n\n #a0b9#c31                               #a0b9#c3!\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "ab<cdefg>2+ef/5896",
+        patternquestion1: "ab<cdefg2+ef/5896",
         type: "trueorfalse", Ans: "Not Identical"}
     ,
-    {question: "Find whether two sets are identical:\n\n (α+β)2 = α20 + β83             (α+β)2 = α20 + β83\n",
-        type: "trueorfalse", Ans: "Identical"}
-    ,
-    {question: "Find whether two sets are identical:\n\n (a.bcosθ)  x (c.dcosθ)     (a.bcosφ)  x (c.dcosθ)\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "98262489745698",
+        patternquestion1: "98262499745698",
         type: "trueorfalse", Ans: "Not Identical"}
     ,
-    {question: "Find whether two sets are identical:\n\n //piyr///*(2+}a{feuw)       //piyr///*(2+}a{feuw)\n",
-        type: "trueorfalse", Ans: "Identical"}
-    ,
-    {question: "Find whether two sets are identical:\n\n seca.cosecg/=tanb\*cotd   seca.cosecg/=tanb\*cotd\n",
-        type: "trueorfalse", Ans: "Identical"}
-    ,
-    {question: "Find whether two sets are identical:\n\n 192.168:184.160                   192.168.184.160\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "6+9.7:2069589",
+        patternquestion1: "6+9.7;2069589",
         type: "trueorfalse", Ans: "Not Identical"}
     ,
-    {question: "Find whether two sets are identical:\n\n {9/3 + 4a +4.a                      {9/3 + 4a +4a\n",
-        type: "trueorfalse", Ans: "Not Identical"}
-    ,
-    {question: "Find whether two sets are identical:\n\n 9-6+abc @d5++                       9-6+abc @d5++\n",
-        type: "trueorfalse", Ans: "Identical"}
-    ,
-    {question: "Find whether two sets are identical:\n\n 5689Xiuyt+X                           5689Xiuyt+X\n",
-        type: "trueorfalse", Ans: "Identical"}
-    ,
-    {question: "Find whether two sets are identical:\n\n 6756-(6789 x 9878]              6756-(6789 x 9878\n",
-        type: "trueorfalse", Ans: "Not Identical"}
-    ,
-    {question: "Find whether two sets are identical:\n\n ab<cdefg>2+ef/5896              ab<cdefg2+ef/5896\n",
-        type: "trueorfalse", Ans: "Not Identical"}
-    ,
-    {question: "Find whether two sets are identical:\n\n 98262489745698                     98262499745698\n",
-        type: "trueorfalse", Ans: "Not Identical"}
-    ,
-    {question: "Find whether two sets are identical:\n\n 6+9.7:2069589                       6+9.7;2069589\n",
-        type: "trueorfalse", Ans: "Not Identical"}
-    ,
-    {question: "Find whether two sets are identical:\n\n FFHH6644                                 FFHH6644\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion : "FFHH6644",
+        patternquestion1: "FFHH6644",
         type: "trueorfalse", Ans: "Identical"}
     , //42
-    {question: "Find whether two sets are identical:\n\n *cotangent<<09455685*        *cotangent<<09455685\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion : "*cotangent<<09455685*",
+        patternquestion1: "*cotangent<<09455685",
         type: "trueorfalse", Ans: "Identical"}
     ,
-    {question: "Find whether two sets are identical:\n\n 2÷3+7.80235/90/                   2÷3+7.80.235/90\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "2÷3+7.80235/90/",
+        patternquestion1: "2÷3+7.80.235/90",
         type: "trueorfalse", Ans: "Not Identical"}
     ,
-    {question: "Find whether two sets are identical:\n\n &adgjl||5735&                       &adgjl||5735&\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "&adgjl||5735&",
+        patternquestion1: "&adgjl||5735&",
         type: "trueorfalse", Ans: "Identical"}
     ,
-    {question: "Find whether two sets are identical:\n\n %8975g_opi+489%                   %8975g_opi+489%\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "%8975g_opi+489%",
+        patternquestion1: "%8975g_opi+489%",
         type: "trueorfalse", Ans: "Identical"}
     ,
-    {question: "Find whether two sets are identical:\n\n d5f4g8h9j                               d5f4g8hu4\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "d5f4g8h9j",
+        patternquestion1: "d5f4g8hu4",
         type: "trueorfalse", Ans: "Not Identical"}
     ,
-    {question: "Find whether two sets are identical:\n\n D8F7G6H5J4                             D8F7G6H5J4\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "D8F7G6H5J4",
+        patternquestion1: "D8F7G6H5J4",
         type: "trueorfalse", Ans: "Identical"}
     ,
-    {question: "Find whether two sets are identical:\n\n 74859595                                 74859595\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "74859595",
+        patternquestion1: "74859595",
         type: "trueorfalse", Ans: "Identical"}
     ,
-    {question: "Find whether two sets are identical:\n\n 77FF66G                                77FF8G9H0J\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "77FF66G",
+        patternquestion1: "77FF8G9H0J",
         type: "trueorfalse", Ans: "Not Identical"}
     ,
-    {question: "Find whether two sets are identical:\n\n 1F2G3H4N5J                             1F2G3H4N5J\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "1F2G3H4N5J",
+        patternquestion1: "1F2G3H4N5J",
         type: "trueorfalse", Ans: "Identical"}
     ,
-    {question: "Find whether two sets are identical:\n\n ÷ë©®®।॥                                    ÷ë©®©।॥\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "÷ë©®®।॥",
+        patternquestion1: "÷ë©®©।॥",
         type: "trueorfalse", Ans: "Identical"}
     ,
-    {question: "Find whether two sets are identical:\n\n 896*30-[08]                           896*30-[08]\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "896*30-[08]",
+        patternquestion1: "896*30-[08]",
         type: "trueorfalse", Ans: "Identical"}
     ,
-    {question: "Find whether two sets are identical:\n\n (9/8)-5!86++                          (9/8)-5!86+\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "(9/8)-5!86++",
+        patternquestion1: "(9/8)-5!86+",
         type: "trueorfalse", Ans: "Not Identical"}
     ,
-    {question: "Find whether two sets are identical:\n\n {530}28#24                             }530{28#24\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "{530}28#24",
+        patternquestion1: "}530{28#24",
         type: "trueorfalse", Ans: "Not Identical"}
     ,
-    {question: "Find whether two sets are identical:\n\n $$555/$$555                           $$555/$$555\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "$$555/$$555",
+        patternquestion1: "$$555/$$555",
         type: "trueorfalse", Ans: "Identical"}
     ,
-    {question: "Find whether two sets are identical:\n\n 65265974:                               65265974:\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "65265974:",
+        patternquestion1: "65265974:",
         type: "trueorfalse", Ans: "Identical"}
     ,
-    {question: "Find whether two sets are identical:\n\n (8146/26-10)                         (8146/26-10)\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "(8146/26-10)",
+        patternquestion1: "(8146/26-10)",
         type: "trueorfalse", Ans: "Identical"}
     ,
-    {question: "Find whether two sets are identical:\n\n -(afg-i56)+(291)                  (afg-i56)+(291)\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "-(afg-i56)+(291)",
+        patternquestion1: "(afg-i56)+(291)",
         type: "trueorfalse", Ans: "Not Identical"}
     ,
-    {question: "Find whether two sets are identical:\n\n k|k|//?{-                               k|k|//?{-\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "k|k|//?{-",
+        patternquestion1: "k|k|//?{-",
         type: "trueorfalse", Ans: "Identical"}
     ,
-    {question: "Find whether two sets are identical:\n\n !*491:-~(y                             !*591:-~(y\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "!*491:-~(y",
+        patternquestion1: "!*591:-~(y",
         type: "trueorfalse", Ans: "Not Identical"}
     ,
-    {question: "Find whether two sets are identical:\n\n Bng52!!h8                               Bng52||h8\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "Bng52!!h8",
+        patternquestion1: "Bng52||h8",
         type: "trueorfalse", Ans: "Not Identical"}
     ,
-    {question: "Find whether two sets are identical:\n\n @68^xc_00                               @68^xc_00\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "@68^xc_00",
+        patternquestion1: "@68^xc_00",
         type: "trueorfalse", Ans: "Identical"}
     ,
-    {question: "Find whether two sets are identical:\n\n 47852013                                 47695325\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "47852013",
+        patternquestion1: "47695325",
         type: "trueorfalse", Ans: "Not Identical"}
     ,
-    {question: "Find whether two sets are identical:\n\n *.*@gtj*.*                             *.*@gtj*.*\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "*.*@gtj*.*",
+        patternquestion1: "*.*@gtj*.*",
         type: "trueorfalse", Ans: "Identical"}
     ,
-    {question: "Find whether two sets are identical:\n\n @qdh2110@                               @qdh2110@\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "@qdh2110@",
+        patternquestion1: "@qdh2110@",
         type: "trueorfalse", Ans: "Identical"}
     ,
-    {question: "Find whether two sets are identical:\n\n H49p52/>7.s*                         H49p52/>7*s*\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "H49p52/>7.s*",
+        patternquestion1: "H49p52/>7*s*",
         type: "trueorfalse", Ans: "Not Identical"}
     ,
-    {question: "Find whether two sets are identical:\n\n w-w=(e-#290)                         w-w=(e-#290)\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "w-w=(e-#290)",
+        patternquestion1: "w-w=(e-#290)",
         type: "trueorfalse", Ans: "Identical"}
     , //68
-    {question: "Find whether two sets are identical:\n\n /538/~fd6                               /538/~fd8\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "/538/~fd6",
+        patternquestion1: "/538/~fd8",
         type: "trueorfalse", Ans: "Not Identical"}
     ,
-    {question: "Find whether two sets are identical:\n\n 604÷560=24                             604÷560=24\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "604÷560=24",
+        patternquestion1: "604÷560=24",
         type: "trueorfalse", Ans: "Identical"}
     ,
-    {question: "Find whether two sets are identical:\n\n 5682#df>l.l                           5682=df>l.l\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "5682#df>l.l",
+        patternquestion1: "5682=df>l.l",
         type: "trueorfalse", Ans: "Not Identical"}
     ,
-    {question: "Find whether two sets are identical:\n\n -7hy0%+517@$                         +7hy0%+517@$\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "-7hy0%+517@$",
+        patternquestion1: "+7hy0%+517@$",
         type: "trueorfalse", Ans: "Not Identical"}
     ,
-    {question: "Find whether two sets are identical:\n\n +[5247-9824]?                       +[5274-9824]?\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "+[5247-9824]?",
+        patternquestion1: "+[5274-9824]?",
         type: "trueorfalse", Ans: "Not Identical"}
     ,
-    {question: "Find whether two sets are identical:\n\n 5868]*[5868                           5868[*]5868\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "5868]*[5868",
+        patternquestion1: "5868[*]5868",
         type: "trueorfalse", Ans: "Not Identical"}
     ,
-    {question: "Find whether two sets are identical:\n\n $$555/$$555                           $$555/$$555\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "$$555/$$555",
+        patternquestion1: "$$555/$$555",
         type: "trueorfalse", Ans: "Identical"}
     ,
-    {question: "Find whether two sets are identical:\n\n 741/83=901                             741-83=901\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "741/83=901",
+        patternquestion1: "741-83=901",
         type: "trueorfalse", Ans: "Not Identical"}
     ,
-    {question: "Find whether two sets are identical:\n\n $$d1.$$$                                 $$d1.$$8\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "$$d1.$$$",
+        patternquestion1: "$$d1.$$8",
         type: "trueorfalse", Ans: "Not Identical"}
     ,
-    {question: "Find whether two sets are identical:\n\n :5170:2380:                           :5170:2380:\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: ":5170:2380:",
+        patternquestion1: ":5170:2380:",
         type: "trueorfalse", Ans: "Identical"}
     , //78
-    {question: "Find whether two sets are identical:\n\n 826 x 526 = 2356                 826 * 526 = 2356\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "826 x 526 = 2356",
+        patternquestion1: "826 * 526 = 2356",
         type: "trueorfalse", Ans: "Not Identical"}
     ,
-    {question: "Find whether two sets are identical:\n\n Z+.*926*/3$                          Z+.*926*/3$\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "Z+.*926*/3$",
+        patternquestion1: "Z+.*926*/3$",
         type: "trueorfalse", Ans: "Identical"}
     ,
-    {question: "Find whether two sets are identical:\n\n ?{47}.{tyg}\\\\                  ?{47}.{tgy}\\\\\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "?{47}.{tyg}\\\\",
+        patternquestion1: "?{47}.{tgy}\\\\",
         type: "trueorfalse", Ans: "Not Identical"}
     ,
-    {question: "Find whether two sets are identical:\n\n abc>dvh+91                            obc>dvh+91\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "abc>dvh+91",
+        patternquestion1: "obc>dvh+91",
         type: "trueorfalse", Ans: "Not Identical"}
     , //82
-    {question: "Find whether two sets are identical:\n\n (&).(*).(3).(@)                  (&).(*).(8).(@)\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "(&).(*).(3).(@)",
+        patternquestion1: "(&).(*).(8).(@)",
         type: "trueorfalse", Ans: "Not Identical"}
     ,
-    {question: "Find whether two sets are identical:\n\n (@)3794(@)                            (@)3794(@}\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "(@)3794(@)",
+        patternquestion1: "(@)3794(@}",
         type: "trueorfalse", Ans: "Not Identical"}
     ,
-    {question: "Find whether two sets are identical:\n\n <1839>~vrpm~                        <1830>~vrpm~\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "<1839>~vrpm~",
+        patternquestion1: "<1830>~vrpm~",
         type: "trueorfalse", Ans: "Not Identical"}
     , //86
-    {question: "Find whether two sets are identical:\n\n +{070<<_>uko                        +{070<<_>uko\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "+{070<<_>uko",
+        patternquestion1: "+{070<<_>uko",
         type: "trueorfalse", Ans: "Identical"}
     ,
-    {question: "Find whether two sets are identical:\n\n 6^3x4&10%                             6^3x4&10%9\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "6^3x4&10%",
+        patternquestion1: "6^3x4&10%9",
         type: "trueorfalse", Ans: "Not Identical"}
     ,
-    {question: "Find whether two sets are identical:\n\n 6xz*6pm&40&                            681034796\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "6xz*6pm&40&",
+        patternquestion1: "681034796",
         type: "trueorfalse", Ans: "Not Identical"}
     ,
-    {question: "Find whether two sets are identical:\n\n 37147@45+z                            37147@45+z\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "37147@45+z",
+        patternquestion1: "37147@45+z",
         type: "trueorfalse", Ans: "Identical"}
     ,
-    {question: "Find whether two sets are identical:\n\n 99877655                                998II655\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "99877655",
+        patternquestion1: "998II655",
         type: "trueorfalse", Ans: "Not Identical"}
     ,
-    {question: "Find whether two sets are identical:\n\n *$”<g>?/                                 *$”<g>?/\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "*$”<g>?/",
+        patternquestion1: "*$”<g>?/",
         type: "trueorfalse", Ans: "Identical"}
     ,
-    {question: "Find whether two sets are identical:\n\n vejk>09))                              vejk>09))\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "vejk>09))",
+        patternquestion1: "vejk>09))",
         type: "trueorfalse", Ans: "Identical"}
     ,
-    {question: "Find whether two sets are identical:\n\n AH60MZ91                                AH60MZ91\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "AH60MZ91",
+        patternquestion1: "AH60MZ91",
         type: "trueorfalse", Ans: "Identical"}
     ,
-    {question: "Find whether two sets are identical:\n\n {690&6#$8}                            {690&6#$8}\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "{690&6#$8}",
+        patternquestion1: "{690&6#$8}",
         type: "trueorfalse", Ans: "Identical"}
     ,
-    {question: "Find whether two sets are identical:\n\n 2-9%3/1+0*5                          2-9%3/1+0*5\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "2-9%3/1+0*5",
+        patternquestion1: "2-9%3/1+0*5",
         type: "trueorfalse", Ans: "Identical"}
     ,
-    {question: "Find whether two sets are identical:\n\n 9.256*6.23=?                        9.256*6.23=8\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "9.256*6.23=?",
+        patternquestion1: "9.256*6.23=8",
         type: "trueorfalse", Ans: "Not Identical"}
     ,
-    {question: "Find whether two sets are identical:\n\n a@b#c$d%e                              a@b#c$d%e\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "a@b#c$d%e",
+        patternquestion1: "a@b#c$d%e",
         type: "trueorfalse", Ans: "Identical"}
     ,
-    {question: "Find whether two sets are identical:\n\n k9/6c-sz+v8                          k9/6c-sz+v8\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "k9/6c-sz+v8",
+        patternquestion1: "k9/6c-sz+v8",
         type: "trueorfalse", Ans: "Identical"}
     ,
-    {question: "Find whether two sets are identical:\n\n 0{+81%)032(                          0{+81%)032(\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "0{+81%)032(",
+        patternquestion1: "0{+81%)032(",
         type: "trueorfalse", Ans: "Identical"}
     ,
-    {question: "Find whether two sets are identical:\n\n B+.*956*|3$                          B+.*956*|3$\n",
+    {
+        question: "Find whether two sets are identical:",
+        patternquestion: "B+.*956*|3$",
+        patternquestion1: "B+.*956*|3$",
         type: "trueorfalse", Ans: "Identical"}
 ];

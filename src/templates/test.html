@@ -2,55 +2,91 @@
     <div  class="scrollable" style="background-color: #FFFFFF;">
         <div class="container-fluid scrollable-content">
             <div ng-hide="test.showResult">
+                <!--                
                 <div class="row">
                     <div ng-show="test.showTimer">
                         <div class="col-xs-8">
-                            <h3 class="page-header">{{test.testname}}</h3>
+                            <h3 class="page-header test2Question">{{test.testname}}</h3>
                         </div>
                         <div class="col-xs-4">
-                            <h3 class="page-header" style="text-align: right">{{test.timedown}}</h3>
+                            <h3 class="page-header test2Question" style="text-align: right">{{test.timedown}}</h3>
                         </div>
                     </div>
                 </div>
                 <div ng-hide="test.showTimer" class="row">
+                    <div class="col-sm-12">
+                        <h3 class="page-header test2Question">{{test.testname}}</h3>
+                    </div>
+                </div>
+                -->
+                <div class="row testtitle">
                     <div class="col-sm-12">
                         <h3 class="page-header">{{test.testname}}</h3>
                     </div>
                 </div>
                 <div ng-show="test.showStart" class="row">
                     <div class="col-sm-12">
-                        <p style="text-indent: 0px;white-space: pre-wrap">{{test.description}}</p>
-                        <h4 ng-show="test.timed">Timed: 4 min</h4>
-                        <h4>Total Items: 61</h4>
+                        <p class="test2Question" style="text-indent: 0px;white-space: pre-wrap;text-align: justify">{{test.description}}</p>
+                        <h4 class="test2Question" ng-show="test.timed" >Timed: 4 min</h4>
+                        <h4 class="test2Question">Total Items: 61</h4>
                     </div>
                 </div>
-                <div ng-hide="test.showStart" class="row">
-                    <div class="col-sm-12">
-                        <form role="form">
-                            <p style="text-indent: 0px;white-space: pre">{{test.pageid}}) {{test.questions[test.pageid - 1].question}}</p>
-                            <br>
-                            <div class="radio">
-                                <label><input type="radio" value="Identical" ng-model="test.questions[test.pageid - 1].selected" name="optradio">Identical</label>
-                            </div>
-                            <div class="radio">
-                                <label><input type="radio" value="Not Identical" ng-model="test.questions[test.pageid - 1].selected" name="optradio">Not Identical</label>
-                            </div>
-                            <br>
-                        </form>
+                <div ng-hide="test.showStart">
+                    <div ng-show="test.showTimer" class="row">
+                        <div class="col-xs-8">
+                            <p class="test2Question" style="text-indent: 0px;white-space: pre">Question {{test.pageid}}</p>
+                        </div>
+                        <div class="col-xs-3">
+                            <h3 style="text-align: right" class="test2Question">{{test.timedown}}</h3>
+                        </div>
+                        <div class="col-xs-1"></div>
+                    </div>
+                    <div ng-hide="test.showTimer" class="row">
+                        <div class="col-sm-12">
+                            <p class="test2Question" style="text-indent: 0px;white-space: pre">Question {{test.pageid}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <p class="test2Question" style="text-indent: 0px;white-space: pre-wrap">{{test.questions[test.pageid - 1].question}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-1 col-sm-2"></div>
+                        <div class="col-xs-5 col-sm-4">
+                            <p class="test2pattern" style="text-indent: 0px;white-space: pre">{{test.questions[test.pageid - 1].patternquestion}}</p>
+                        </div>
+                        <div class="col-xs-5 col-sm-4">
+                            <p class="test2pattern" style="text-indent: 0px;white-space: pre;text-align: right">{{test.questions[test.pageid - 1].patternquestion1}}</p>
+                        </div>
+                        <div class="col-xs-1 col-sm-2"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <form role="form">
+                                <div class="radio">
+                                    <label class="test2Question"><input class="test2Question" type="radio" value="Identical" ng-model="test.questions[test.pageid - 1].selected" name="optradio">Identical</label>
+                                </div>
+                                <div class="radio">
+                                    <label class="test2Question"><input class="test2Question" type="radio" value="Not Identical" ng-model="test.questions[test.pageid - 1].selected" name="optradio">Not Identical</label>
+                                </div>
+                                <br>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
             <div ng-show="test.showResult">
                 <div class="row">
                     <div class="col-sm-12">
-                        <h3 class="page-header">{{test.testname}}</h3> 
+                        <h3  class="page-header test2Question">{{test.testname}}</h3> 
                     </div>
                 </div>
                 <div ng-show="test.showTimer" class="row">
-                    <div ng-show="test.results.passed" class="col-sm-12">
+                    <div  ng-show="test.results.passed" class="col-sm-12 test2Question">
                         Congratulation you passed the test.
                     </div>
-                    <div ng-hide="test.results.passed" class="col-sm-12">
+                    <div ng-hide="test.results.passed" class="col-sm-12 test2Question">
                         Sorry you failed the test. Please try again.
                     </div>
                     <br/>
@@ -59,21 +95,21 @@
                     <div class="col-sm-12">
                         Your Score is:
                         <br/>
-                        <h1>{{test.results.correctAnswers}}/{{test.results.totalScore}}</h1>
+                        <h1 class="test2Question">{{test.results.correctAnswers}}/{{test.results.totalScore}}</h1>
                     </div>
                 </div>
                 <div ng-show="test.showTimer" class="row">
-                    <div class="col-sm-12">
+                    <div class="col-sm-12 test2Question">
                         Time Elapsed:
                         <br/>
-                        <h1>{{test.getTimeElapsed()}}</h1>
+                        <h1 class="test2Question">{{test.getTimeElapsed()}}</h1>
                     </div>
                 </div>
                 <div ng-show="test.showTimer" class="row">
-                    <div class="col-sm-12">
+                    <div class="col-sm-12 test2Question">
                         Time Remaining:
                         <br/>
-                        <h1>{{test.getTimeRemaining()}}</h1>
+                        <h1 class="test2Question">{{test.getTimeRemaining()}}</h1>
                     </div>
                 </div>
             </div>
@@ -83,15 +119,15 @@
         <div class="modal-backdrop in"></div>
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
-                </div>
+<!--                <div class="modal-header">
+                </div>-->
                 <div class="modal-body">
-                    <p>Sorry you have run out of time!</p>
+                    <p class="test2Question">Sorry you have run out of time!</p>
                     <br/>
-                    <p>Please proceed to the result page.</p>
+                    <p class="test2Question">Please proceed to the result page.</p>
                 </div>
                 <div class="modal-footer">
-                    <button ng-click="test.submit()" class="btn btn-primary">Continue</button>
+                    <button ng-click="test.submit()" class="btn btn-primary test2Question" >Continue</button>
                 </div>
             </div>
         </div>
