@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.jlr.assessment" version="0.0.4">
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.jlr.assessment" version="0.0.5">
     <name>JLR Assessment</name>
     <description>
-        Hello World sample application that responds to the deviceready event.
+        A simple Assessment tool for JLR.
     </description>
-    <author email="support@phonegap.com" href="http://phonegap.com">
-        PhoneGap Team
+    <author email="ramil.saavedra@gmail.com.com" href="http://phonegap.com">
+        Ramil Saavedra FreeLancer
     </author>
     <content src="index.html"/>
     <preference name="permissions" value="none"/>
