@@ -802,39 +802,48 @@ var assessment2questions = [
         category: 11,
         questions: [
             {
-                patternquestion: "",
-                question: "category 11 1of5",
+                patternquestion: "D T R B N I Z P A I H L A Q I H D T V L W Y E B U\n\
+2 0 5 1 8 3 6 2 4 3 7 9 2 7 2 0 1 3 5 8 4 8 4 9 3",
+                question: "Add up the digits that appear under “ I“ and then add up the digits that appear under “ L“. If the first sum is larger that the second, enter the sum of the second. If the second is larger that the first, enter the sum of the first, if they are equal, enter 33.",
                 type: "pattern",
-                CorrectAnswer: '0',
+                CorrectAnswer: '8',
                 answer: ""
 
             }
             ,
             {
-                question: "category 11 2of5",
+                patternquestion:"A F R E H N Y E C U E K X L X A G K P S Q V J T M\n\
+1 5 6 7 0 5 3 2 8 4 5 9 2 3 4 5 0 2 1 7 5 3 6 8 4",
+                question: "Add up the digits that appear under “ A“ and then add up the digits that appear under “ X“. If the first sum is larger that the second, enter the sum of the second. If the second is larger that the first, enter the sum of the first, if they are equal, enter 11.",
                 type: "pattern",
-                CorrectAnswer: '0',
+                CorrectAnswer: '11',
                 answer: ""
             }
             ,
             {
-                question: "category 11 3of5",
+                patternquestion:"T G N E C B S J C M W I S L Z R K V S P A C Y Q U \n\
+1 5 3 2 8 5 7 3 9 0 2 3 6 8 3 7 3 2 4 6 9 7 1 2 5",
+                question: "Add up the digits that appear under “S “ and then add up the digits that appear under “ C“. If the first sum is larger that the second, enter the sum of the second. If the second is larger that the first, enter the sum of the first, if they are equal, enter 76.",
                 type: "pattern",
-                CorrectAnswer: '0',
+                CorrectAnswer: '17',
                 answer: ""
             }
             ,
             {
-                question: "category 11 4of5",
+                patternquestion:"X J W R C U C O P T Q Y V X A N K N L X N H Q B Z\n\
+3 5 7 1 7 4 3 4 5 9 0 6 4 1 5 3 8 6 5 4 1 2 7 8 0",
+                question: "Add up the digits that appear under “N“ and then add up the digits that appear under “ Q“. If the first sum is larger that the second, enter the sum of the second. If the second is larger that the first, enter the sum of the first, if they are equal, enter 27.",
                 type: "pattern",
-                CorrectAnswer: '0',
+                CorrectAnswer: '7',
                 answer: ""
             }
             ,
             {
-                question: "category 11 5of5",
+                patternquestion:"W I C B A G W R F B J L D F E U P Q K H D N V M X\n\\n\
+4 8 9 4 2 0 6 3 5 7 9 6 3 2 1 3 0 8 9 5 7 1 5 9 2",
+                question: "Add up the digits that appear under “C“ and then add up the digits that appear under “Q“. If the first sum is larger that the second, enter the sum of the second. If the second is larger that the first, enter the sum of the first, if they are equal, enter 53.",
                 type: "pattern",
-                CorrectAnswer: '0',
+                CorrectAnswer: '8',
                 answer: ""
             }
         ]
@@ -844,7 +853,9 @@ var assessment2questions = [
         category: 12,
         questions: [
             {
-                question: "category 12 1of5",
+                patternquestion:"P Q W E T V X N O I A F G D F T Y C W E P V Z L O\n\
+0 1 4 6 5 3 9 3 7 8 2 1 5 3 7 4 8 5 0 7 2 8 4 7 3",
+                question: "Look at the eight right most digits. Find the digit among these that stands to the left of the digit that is below the letter W. Enter that digit.",
                 type: "pattern",
                 CorrectAnswer: '0',
                 answer: ""
@@ -852,30 +863,38 @@ var assessment2questions = [
             }
             ,
             {
-                question: "category 12 2of5",
+                patternquestion:"E C A B Y V Z P Q U V E H K F S V S B W U M Q L R\n\
+8 9 5 4 2 3 1 0 1 7 5 8 6 4 9 5 2 3 7 9 5 8 1 3 4",
+                question: "Look at the eleven right most digits. Find the digit among these that stands to the left of the digit that is below the letter S. Enter that digit.",
                 type: "pattern",
-                CorrectAnswer: '0',
+                CorrectAnswer: '5',
                 answer: ""
             }
             ,
             {
-                question: "category 12 3of5",
+                patternquestion:"T S V T M W X M G D J W H X L P U B C A F A G R H\n\
+3 8 9 1 4 2 0 4 7 8 6 0 3 1 5 8 3 2 4 6 3 8 7 0 1",
+                question: "Look at the seven right most digits. Find the digit among these that stands to the left of the digit that is below the letter A. Enter that digit.",
                 type: "pattern",
-                CorrectAnswer: '0',
+                CorrectAnswer: '6',
                 answer: ""
             }
             ,
             {
-                question: "category 12 4of5",
+                patternquestion:"A R B T D N A J H D X F G D P Q Y B G D G X Z Q G\n\
+6 5 9 8 7 4 5 6 2 3 0 1 4 8 9 6 3 0 2 1 5 8 7 8 5",
+                question: "Look at the nine right most digits.Find the digits among these that stands to the left of the digit that is below the D. Enter that digit.",
                 type: "pattern",
-                CorrectAnswer: '0',
+                CorrectAnswer: '1',
                 answer: ""
             }
             ,
             {
-                question: "category 12 5of5",
+                patternquestion:"X V N T D X E J H P X F R T X Q Y B T L G L T M Y\n\
+9 3 5 7 9 3 2 6 9 4 0 1 2 8 4 3 7 8 2 7 5 8 4 1 2",
+                question: "Look at the ten left most digits.Find the digits among these that stands to the left of the digit that is below the T. Enter that digit.",
                 type: "pattern",
-                CorrectAnswer: '0',
+                CorrectAnswer: '7',
                 answer: ""
             }
         ]
@@ -885,38 +904,42 @@ var assessment2questions = [
         category: 13,
         questions: [
             {
-                question: "category 13 1of5",
-                type: "pattern",
-                CorrectAnswer: '0',
-                answer: ""
-
-            }
-            ,
-            {
-                question: "category 13 2of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "Enter the first digit of the largest number and the middle digit of the smallest number of the following list of numbers: (enter from left to right without space)",
+                patternquestion:"1203041200 200103 102301150340 200864 00125 0403120",
+                type: "pattern2",
+                CorrectAnswer: '11',
                 answer: ""
             }
             ,
             {
-                question: "category 13 3of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "Enter the first digit of the largest number and the middle digit of the smallest number of the following list of numbers: (enter from left to right without space)",
+                patternquestion:"200210325004 0015632 201450002 00213 00122301 001233",
+                type: "pattern2",
+                CorrectAnswer: '22',
                 answer: ""
             }
             ,
             {
-                question: "category 13 4of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "Enter the first digit of the largest number and the middle digit of the smallest number of the following list of numbers: (enter from left to right without space)",
+                patternquestion:"500310 12003201 102510032  10023 2004130120 200134002300",
+                type: "pattern2",
+                CorrectAnswer: '20',
                 answer: ""
             }
             ,
             {
-                question: "category 13 5of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "Enter the first digit of the largest number and the middle digit of the smallest number of the following list of numbers: (enter from left to right without space)",
+                patternquestion:"200310 02310 0053301204 02260403100 102103204200 00123014",
+                type: "pattern2",
+                CorrectAnswer: '13',
+                answer: ""
+            }
+            ,
+            {
+                question: "Enter the first digit of the largest number and the middle digit of the smallest number of the following list of numbers: (enter from left to right without space)",
+                patternquestion:"100320123005 25165161 121021",
+                type: "pattern2",
+                CorrectAnswer: '11',
                 answer: ""
             }
         ]
@@ -926,38 +949,42 @@ var assessment2questions = [
         category: 14,
         questions: [
             {
-                question: "category 14 1of5",
-                type: "pattern",
-                CorrectAnswer: '0',
-                answer: ""
-
-            }
-            ,
-            {
-                question: "category 14 2of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "If the following list of numbers, if the sum of the even numbers is larger than the sum of the odd numbers, enter 250. If the sum of the odd numbers is larger, enter 150, and if they are equal, enter 50.",
+                patternquestion:"5, 9, 4, 2, 1, 8, 3, 5",
+                type: "pattern2",
+                CorrectAnswer: '150',
                 answer: ""
             }
             ,
             {
-                question: "category 14 3of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "If the following list of numbers, if the sum of the even numbers is larger than the sum of the odd numbers, enter 250. If the sum of the odd numbers is larger, enter 150, and if they are equal, enter 50.",
+                patternquestion:"8, 9, 2, 7, 6, 1, 5, 6",
+                type: "pattern2",
+                CorrectAnswer: '50',
                 answer: ""
             }
             ,
             {
-                question: "category 14 4of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "If the following list of numbers, if the sum of the even numbers is larger than the sum of the odd numbers, enter 250. If the sum of the odd numbers is larger, enter 150, and if they are equal, enter 50.",
+                patternquestion:"9, 4, 1, 2, 1, 8, 7, 2",
+                type: "pattern2",
+                CorrectAnswer: '150',
                 answer: ""
             }
             ,
             {
-                question: "category 14 5of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "If the following list of numbers, if the sum of the even numbers is larger than the sum of the odd numbers, enter 250. If the sum of the odd numbers is larger, enter 150, and if they are equal, enter 50.",
+                patternquestion:"8, 9, 6, 7, 6, 1, 4, 3",
+                type: "pattern2",
+                CorrectAnswer: '250',
+                answer: ""
+            }
+            ,
+            {
+                question: "If the following list of numbers, if the sum of the even numbers is larger than the sum of the odd numbers, enter 250. If the sum of the odd numbers is larger, enter 150, and if they are equal, enter 50.",
+                patternquestion:"3, 5, 2, 4, 6, 0, 1, 3",
+                type: "pattern2",
+                CorrectAnswer: '50',
                 answer: ""
             }
         ]
@@ -967,37 +994,41 @@ var assessment2questions = [
         category: 15,
         questions: [
             {
-                question: "category 15 1of5",
+                question: "If it is shorter than 5 cm, enter 5. If it is longer that 12 cm, enter 2, and if it is between 5 cm and 12, enter 512.",
+                patternquestion:"|--------------------------------------------------|",
                 type: "pattern",
-                CorrectAnswer: '0',
-                answer: ""
-
-            }
-            ,
-            {
-                question: "category 15 2of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                CorrectAnswer: '512',
                 answer: ""
             }
             ,
             {
-                question: "category 15 3of5",
-                type: "pattern",
+                question: "",
+                patternquestion:"",
+                type: "pattern2",
                 CorrectAnswer: '0',
                 answer: ""
             }
             ,
             {
-                question: "category 15 4of5",
-                type: "pattern",
+                question: "",
+                patternquestion:"",
+                type: "pattern2",
                 CorrectAnswer: '0',
                 answer: ""
             }
             ,
             {
-                question: "category 15 5of5",
-                type: "pattern",
+                question: "",
+                patternquestion:"",
+                type: "pattern2",
+                CorrectAnswer: '0',
+                answer: ""
+            }
+            ,
+            {
+                question: "",
+                patternquestion:"",
+                type: "pattern2",
                 CorrectAnswer: '0',
                 answer: ""
             }
@@ -1008,38 +1039,48 @@ var assessment2questions = [
         category: 16,
         questions: [
             {
-                question: "category 16 1of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "Enter the number that appears to the left of the list of letters that is the same as: 1X11V1VX1X",
+                patternquestion:"1)  1X11VXV11X\t2)  1X11VVX11X\t3)  1X1VXV11X1\n\
+\t4)  1X1V1XV11X\t5)  1X11V1VX1X",
+                type: "pattern2",
+                CorrectAnswer: '5',
                 answer: ""
 
             }
             ,
             {
-                question: "category 16 2of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "Enter the number that appears to the left of the list of letters that is the same as: 1XV1X1VX1X",
+                patternquestion:"1)  1VX1X1VX1X\t2)  1XV1X1VX1X\t3)  1XV1X1V1X1\n\
+\t4)  1XV1X1XX1X\t5)  1XV1V1VX1X",
+                type: "pattern2",
+                CorrectAnswer: '2',
                 answer: ""
             }
             ,
             {
-                question: "category 16 3of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "Enter the number that appears to the left of the list of letters that is the same as: V1X1X1VX1X",
+                patternquestion:"1)  V1X1X1XV1X\t2)  VX1X1XVX1X\t3)  V1X1X1VV1X\n\
+\t4)  V1X1X1VX1X\t5)  V1X1XV1X1X",
+                type: "pattern2",
+                CorrectAnswer: '4',
                 answer: ""
             }
             ,
             {
-                question: "category 16 4of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "Enter the number that appears to the left of the list of letters that is the same as: X1XV1VX11X",
+                patternquestion:"1)  X1XV1VX11V\t2)  X1XV1VX11X\t3)  X1XVX1X11X\n\
+\t4)  X1XV1XV11X\t5)  X1VV1VX11X",
+                type: "pattern2",
+                CorrectAnswer: '2',
                 answer: ""
             }
             ,
             {
-                question: "category 16 5of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "Enter the number that appears to the left of the list of letters that is the same as: X1VXV1VX1V",
+                patternquestion:"1)  X1VXV1VX1V\t2)  X1VXV1XV1V\t3)  X1XVX1X11X\n\
+\t4)  X1VX1VVX1V\t5)  X1VV1VX11X",
+                type: "pattern2",
+                CorrectAnswer: '1',
                 answer: ""
             }
         ]
