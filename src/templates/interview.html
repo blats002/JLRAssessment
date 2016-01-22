@@ -1,3 +1,22 @@
-<section class="section container-fluid">
-  <h1 class="page-header">Wellcome to Interview Page</h1>  
+<section class="section container-fluid" ng-controller="InterviewController as interview">
+    <div  class="scrollable" style="background-color: #FFFFFF;">
+        <div class="container-fluid scrollable-content">
+            <h3 class="page-header">Welcome to Interview Page</h3>
+            <div class="panel-group" ui-state="myAccordion" ui-default="-1">
+                <div class="panel panel-default" ng-repeat="i in interview.questions">
+                    <div class="panel-heading" ui-set="{'myAccordion': i.index}">        
+                        <h4 class="panel-title">
+                            Question #{{i.index}}
+                        </h4>
+                    </div>
+                    <div ui-if="myAccordion == i.index" ui-scope-context='i'>
+                        <div class="panel-body">
+                            <p style="text-indent: 0px;white-space: pre-wrap">{{i.questions}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </section>

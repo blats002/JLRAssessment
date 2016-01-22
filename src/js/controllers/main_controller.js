@@ -25,6 +25,7 @@ function getTimeString(timeCount) {
 
 var mainCtrl;
 var testCtrl;
+var interviewCtrl;
 
 Array.prototype.shuffle = function () {
     var i = this.length, j, temp;
@@ -286,6 +287,10 @@ This test is not timed.",
                 testCtrl.closeTimeUpModal()
                 mainCtrl.submit();
             }
+        })
+        .controller('InterviewController', function ($scope, $rootScope, $routeParams, ngDialog, $timeout) {
+            interviewCtrl = this;
+            interviewCtrl.questions=interviewquestions;
         });
 
 var assessment2questions = [
@@ -1002,34 +1007,34 @@ var assessment2questions = [
             }
             ,
             {
-                question: "",
-                patternquestion:"",
-                type: "pattern2",
-                CorrectAnswer: '0',
+                question: "If it is shorter than 7 cm, enter 7. If it is longer that 13 cm, enter 3, and if it is between 7 cm and 13, enter 713.",
+                patternquestion:"|--------------------------------------------------------------|",
+                type: "pattern",
+                CorrectAnswer: '7',
                 answer: ""
             }
             ,
             {
-                question: "",
-                patternquestion:"",
-                type: "pattern2",
-                CorrectAnswer: '0',
+                question: "If it is shorter than 8 cm, enter 8. If it is longer that 15 cm, enter 5, and if it is between 8 cm and 15, enter 815.",
+                patternquestion:"|--------------------------------------------------------------------|",
+                type: "pattern",
+                CorrectAnswer: '8',
                 answer: ""
             }
             ,
             {
-                question: "",
-                patternquestion:"",
-                type: "pattern2",
-                CorrectAnswer: '0',
+                question: "If it is shorter than 9 cm, enter 9. If it is longer that 12 cm, enter 2, and if it is between 9 cm and 12, enter 912.",
+                patternquestion:"|---------------------------------------------------------------------------------------------------------------|",
+                type: "pattern",
+                CorrectAnswer: '2',
                 answer: ""
             }
             ,
             {
-                question: "",
-                patternquestion:"",
+                question: "If it is shorter than 8 cm, enter 8. If it is longer that 14 cm, enter 4, and if it is between 8 cm and 14, enter 814.",
+                patternquestion:"|---------------------------------------------------------------------------------|",
                 type: "pattern2",
-                CorrectAnswer: '0',
+                CorrectAnswer: '814',
                 answer: ""
             }
         ]
@@ -1187,38 +1192,43 @@ var assessment2questions = [
         category: 19,
         questions: [
             {
-                question: "category 19 1of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "Enter how many times the digit 4 appears just after an odd number (go from left to right):",
+                patternquestion:"2 4 1 5 4 5 9 7 1 5 7 4 0 8 9 4 4",
+                type: "pattern2",
+                CorrectAnswer: '4',
                 answer: ""
 
             }
             ,
             {
-                question: "category 19 2of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "Enter how many times the digit 0 appears just after an odd number (go from left to right):",
+                patternquestion:"2 4 0 6 0 7 0 9 0 0 2 3 0 4 8 0 4",
+                type: "pattern2",
+                CorrectAnswer: '5',
                 answer: ""
             }
             ,
             {
-                question: "category 19 3of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "Enter how many times the digit 7 appears just after an odd number (go from left to right):",
+                patternquestion:"2 7 3 1 7 0 2 7 0 9 7 8 3 5 6 1 4",
+                type: "pattern2",
+                CorrectAnswer: '3',
                 answer: ""
             }
             ,
             {
-                question: "category 19 4of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "Enter how many times the digit 5 appears just after an odd number (go from left to right):",
+                patternquestion:"0 1 2 6 4 5 9 7 0 5 0 6 0 4 0 3 6",
+                type: "pattern2",
+                CorrectAnswer: '2',
                 answer: ""
             }
             ,
             {
-                question: "category 19 5of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "Enter how many times the digit 3 appears just after an odd number (go from left to right):",
+                patternquestion:"7 3 1 3 6 4 0 3 8 7 2 4 9 0 3 6 3",
+                type: "pattern2",
+                CorrectAnswer: '5',
                 answer: ""
             }
         ]
@@ -1228,38 +1238,48 @@ var assessment2questions = [
         category: 20,
         questions: [
             {
-                question: "category 20 1of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "Enter the second digit (from right) of the number that appears under the word that is different from the other words in the function it serves:",
+                patternquestion:"SNAKE   BEAR   LIZARD   CROCODIL   TURTLE\n\
+3456    5648   3360     5679       4563",
+                type: "pattern2",
+                CorrectAnswer: '4',
                 answer: ""
 
             }
             ,
             {
-                question: "category 20 2of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "Enter the third digit (from right) of the number that appears under the word that is different from the other words in the function it serves:",
+                patternquestion:"BOOK   FLOWER   DESK   CHAIR   LAMP\n\
+1345   3125     4213   3123    1234",
+                type: "pattern2",
+                CorrectAnswer: '1',
                 answer: ""
             }
             ,
             {
-                question: "category 20 3of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "Enter the third digit (from left) of the number that appears under the word that is different from the other words in the function it serves:",
+                patternquestion:"JUICE   WATER   WINE   MILK   ICE\n\
+6547    7548    6887   7404   6197",
+                type: "pattern2",
+                CorrectAnswer: '9',
                 answer: ""
             }
             ,
             {
-                question: "category 20 4of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "Enter the second digit (from left) of the number that appears under the word that is different from the other words in the function it serves:",
+                patternquestion:"BRICK   ROCK   OXYGEN   STEEL   GOLD\n\
+2764    4466   1793     2476    1837",
+                type: "pattern2",
+                CorrectAnswer: '7',
                 answer: ""
             }
             ,
             {
-                question: "category 20 5of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "Enter the first digit (from right) of the number that appears under the word that is different from the other words in the function it serves:",
+                patternquestion:"ORANGE   APPLE   TOMATO   BANANA   MANGO\n\
+2921     4563    4312     2201     4176",
+                type: "pattern2",
+                CorrectAnswer: '2',
                 answer: ""
             }
         ]
@@ -1269,38 +1289,48 @@ var assessment2questions = [
         category: 21,
         questions: [
             {
-                question: "category 21 1of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "Look at the following two numbers. If the right number has larger number of digits and it is also larger value, enter 444. If the left number has a larger number of digits and is smaller in value enter 111, and if the left number has a fewer number of digits and its value is larger, enter 333.",
+                patternquestion1:"51214.825",
+                patternquestion2:"71648.27",
+                type: "pattern3",
+                CorrectAnswer: '111',
                 answer: ""
 
             }
             ,
             {
-                question: "category 21 2of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "Look at the following two numbers. If the right number has larger number of digits and it is also larger value, enter 555. If the left number has a larger number of digits and is smaller in value enter 999, and if the left number has a fewer number of digits and its value is larger, enter 222.",
+                patternquestion1:"5124.32",
+                patternquestion2:"1715.345",
+                type: "pattern3",
+                CorrectAnswer: '222',
                 answer: ""
             }
             ,
             {
-                question: "category 21 3of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "Look at the following two numbers. If the right number has larger number of digits and it is also larger value, enter 777. If the left number has a larger number of digits and is smaller in value enter 555, and if the left number has a fewer number of digits and its value is larger, enter 111.",
+                patternquestion1:"74256.21",
+                patternquestion2:"845124.48",
+                type: "pattern3",
+                CorrectAnswer: '555',
                 answer: ""
             }
             ,
             {
-                question: "category 21 4of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "Look at the following two numbers. If the right number has larger number of digits and it is also larger value, enter 888. If the left number has a larger number of digits and is smaller in value enter 333, and if the left number has a fewer number of digits and its value is larger, enter 999.",
+                patternquestion1:"544587.94",
+                patternquestion2:"54487.9437",
+                type: "pattern3",
+                CorrectAnswer: '999',
                 answer: ""
             }
             ,
             {
-                question: "category 21 5of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "Look at the following two numbers. If the right number has larger number of digits and it is also larger value, enter 222. If the left number has a larger number of digits and is smaller in value enter 555, and if the left number has a fewer number of digits and its value is larger, enter 333.",
+                patternquestion1:"894317.23",
+                patternquestion2:"998251.223",
+                type: "pattern3",
+                CorrectAnswer: '222',
                 answer: ""
             }
         ]
@@ -1310,40 +1340,39 @@ var assessment2questions = [
         category: 22,
         questions: [
             {
-                question: "category 22 1of5",
-                type: "pattern",
-                CorrectAnswer: '0',
-                answer: ""
-
-            }
-            ,
-            {
-                question: "category 22 2of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "Subtract from the number of months in a year the number of days in a week and enter the result.",
+                type: "nopattern",
+                CorrectAnswer: '5',
                 answer: ""
             }
             ,
             {
-                question: "category 22 3of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "Add the number of hours in a day to  the number of days in a week and enter the result.",
+                type: "nopattern",
+                CorrectAnswer: '31',
                 answer: ""
             }
             ,
             {
-                question: "category 22 4of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "Add the number of hours in two days to  the number of minutes in an hour and enter the result.",
+                type: "nopattern",
+                CorrectAnswer: '108',
                 answer: ""
             }
-            ,
-            {
-                question: "category 22 5of5",
-                type: "pattern",
-                CorrectAnswer: '0',
-                answer: ""
-            }
+//            ,
+//            {
+//                question: "category 22 4of5",
+//                type: "nopattern",
+//                CorrectAnswer: '0',
+//                answer: ""
+//            }
+//            ,
+//            {
+//                question: "category 22 5of5",
+//                type: "nopattern",
+//                CorrectAnswer: '0',
+//                answer: ""
+//            }
         ]
     }
     ,
@@ -1351,38 +1380,43 @@ var assessment2questions = [
         category: 23,
         questions: [
             {
-                question: "category 23 1of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "Enter the largest number of these numbers backwards:",
+                patternquestion:"22    43    73    54    97    16    94    58",
+                type: "pattern2",
+                CorrectAnswer: '79',
                 answer: ""
 
             }
             ,
             {
-                question: "category 23 2of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "Enter the largest number of these numbers backwards:",
+                patternquestion:"64    47    11    34    55    67    72    38",
+                type: "pattern2",
+                CorrectAnswer: '27',
                 answer: ""
             }
             ,
             {
-                question: "category 23 3of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "Enter the largest number of these numbers backwards:",
+                patternquestion:"73    19    91    54    34    29    95    43",
+                type: "pattern2",
+                CorrectAnswer: '59',
                 answer: ""
             }
             ,
             {
-                question: "category 23 4of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "Enter the largest number of these numbers backwards:",
+                patternquestion:"67    53    41    81    73    45    62    33",
+                type: "pattern2",
+                CorrectAnswer: '18',
                 answer: ""
             }
             ,
             {
-                question: "category 23 5of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "Enter the largest number of these numbers backwards:",
+                patternquestion:"32    13    27    39    19    11    33    25",
+                type: "pattern2",
+                CorrectAnswer: '93',
                 answer: ""
             }
         ]
@@ -1392,38 +1426,43 @@ var assessment2questions = [
         category: 24,
         questions: [
             {
-                question: "category 24 1of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "Enter the second digit of the largest of these numbers:",
+                patternquestion:"7564     7834     8654     8963     7954",
+                type: "pattern2",
+                CorrectAnswer: '9',
                 answer: ""
 
             }
             ,
             {
-                question: "category 24 2of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "Enter the third digit of the largest of these numbers:",
+                patternquestion:"1756     2754     1035     1999     2023",
+                type: "pattern2",
+                CorrectAnswer: '5',
                 answer: ""
             }
             ,
             {
-                question: "category 24 3of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "Enter the second digit of the largest of these numbers:",
+                patternquestion:"3712     5100     5033     3911     5101",
+                type: "pattern2",
+                CorrectAnswer: '1',
                 answer: ""
             }
             ,
             {
-                question: "category 24 4of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "Enter the fourth digit of the largest of these numbers:",
+                patternquestion:"8245     8241     5421     8263     2456",
+                type: "pattern2",
+                CorrectAnswer: '3',
                 answer: ""
             }
             ,
             {
-                question: "category 24 5of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "Enter the second digit of the smallest of these numbers:",
+                patternquestion:"7659     1211     6477     7652     7021",
+                type: "pattern2",
+                CorrectAnswer: '2',
                 answer: ""
             }
         ]
@@ -1433,38 +1472,43 @@ var assessment2questions = [
         category: 25,
         questions: [
             {
-                question: "category 25 1of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "Enter the digit that appears to the left of the shortest word :",
+                patternquestion:"1)Happy  2)Wood  3)Hospital  4)Number  5)Light",
+                type: "pattern2",
+                CorrectAnswer: '2',
                 answer: ""
 
             }
             ,
             {
-                question: "category 25 2of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "Enter the digit that appears to the left of the shortest word :",
+                patternquestion:"1)Pineapple  2)Strawberry  3)Country  4)Cucumber  5)Reference",
+                type: "pattern2",
+                CorrectAnswer: '3',
                 answer: ""
             }
             ,
             {
-                question: "category 25 3of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "Enter the digit that appears to the left of the shortest word :",
+                patternquestion:"1)Gold  2)Horse  3)Screen  4)Oil  5)Division",
+                type: "pattern2",
+                CorrectAnswer: '4',
                 answer: ""
             }
             ,
             {
-                question: "category 25 4of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "Enter the digit that appears to the left of the shortest word :",
+                patternquestion:"1)Water  2)Glasses  3)Illness  4)Styles  5)Tomato",
+                type: "pattern2",
+                CorrectAnswer: '1',
                 answer: ""
             }
             ,
             {
-                question: "category 25 5of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "Enter the digit that appears to the left of the shortest word :",
+                patternquestion:"1)Telephone  2)Keyboard  3)Beautiful  4)Control  5)Router",
+                type: "pattern2",
+                CorrectAnswer: '5',
                 answer: ""
             }
         ]
@@ -1474,38 +1518,38 @@ var assessment2questions = [
         category: 26,
         questions: [
             {
-                question: "category 26 1of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "Enter the total number of letters that exists in the second, third , and sixth words in this sentence:",
+                type: "nopattern",
+                CorrectAnswer: '15',
                 answer: ""
 
             }
             ,
             {
-                question: "category 26 2of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "Enter the total number of letters that exists in the first, fourth , and seventh words in this sentence:",
+                type: "nopattern",
+                CorrectAnswer: '15',
                 answer: ""
             }
             ,
             {
-                question: "category 26 3of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "Enter the total number of letters that exists in the first, second, fifth, and sixth words in this sentence:",
+                type: "nopattern",
+                CorrectAnswer: '17',
                 answer: ""
             }
             ,
             {
-                question: "category 26 4of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "Enter the total number of letters that exists in the first, third, and ninth words in this sentence:",
+                type: "nopattern",
+                CorrectAnswer: '12',
                 answer: ""
             }
             ,
             {
-                question: "category 26 5of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "Enter the total number of letters that exists in the second, third, fifth, and sixth words in this sentence:",
+                type: "nopattern",
+                CorrectAnswer: '17',
                 answer: ""
             }
         ]
@@ -1515,38 +1559,43 @@ var assessment2questions = [
         category: 27,
         questions: [
             {
-                question: "category 27 1of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "How many times does the word \"simple\" appear after the word \"season\" in the list below? Enter the answer:",
+                patternquestion:"PEOPLE  SIMPLE  SEASON  SIMPLE  AUTUMN  SIMPLE  WINTER  PEOPLE  PEOPLE  SEASON",
+                type: "pattern2",
+                CorrectAnswer: '2',
                 answer: ""
 
             }
             ,
             {
-                question: "category 27 2of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "How many times does the word \"wood\" appear after the word \"mood\" in the list below? Enter the answer:",
+                patternquestion:"MOOD  ROUTE  LESS  MOOD  WOOD  COOL  MOOD  WOOD  WOOD  LESS",
+                type: "pattern2",
+                CorrectAnswer: '3',
                 answer: ""
             }
             ,
             {
-                question: "category 27 3of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "How many times does the word \"two\" appear after the word \"ten\" in the list below? Enter the answer:",
+                patternquestion:"TEN  WIN  EXIT  TEN  TWO  TEN  TEN  TWO  ONE  TONE  TWO  END  TEN  TWO  MINE",
+                type: "pattern2",
+                CorrectAnswer: '4',
                 answer: ""
             }
             ,
             {
-                question: "category 27 4of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "How many times does the word \"past\" appear after the word \"meal\" in the list below? Enter the answer:",
+                patternquestion:"GREEN  MEAL  PAST  MINT  PAST  MEAL  GRILL  RED  PAST  PINK  PAST  MEAL  PAST",
+                type: "pattern2",
+                CorrectAnswer: '5',
                 answer: ""
             }
             ,
             {
-                question: "category 27 5of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "How many times does the word \"oil\" appear after the word \"owl\" in the list below? Enter the answer:",
+                patternquestion:"OWN  OIL  OWL  OWN  ONE  OIL  OWN  UNDER  OWNER  OIL  OWN  ONE  OIL  OWNER  OWL",
+                type: "pattern2",
+                CorrectAnswer: '3',
                 answer: ""
             }
         ]
@@ -1556,38 +1605,38 @@ var assessment2questions = [
         category: 28,
         questions: [
             {
-                question: "category 28 1of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "If the sum of the two numbers 41 and 54 is greater than the difference between the two numbers 512 and 329, enter the difference between the sum and the difference.If it is greater than the sum, enter the difference between the difference and the sum.",
+                type: "nopattern",
+                CorrectAnswer: '88',
                 answer: ""
 
             }
             ,
             {
-                question: "category 28 2of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "If the sum of the two numbers 69 and 32 is greater than the difference between the two numbers 441 and 390, enter the difference between the sum and the difference.If it is greater than the sum, enter the difference between the difference and the sum.",
+                type: "nopattern",
+                CorrectAnswer: '50',
                 answer: ""
             }
             ,
             {
-                question: "category 28 3of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "If the sum of the two numbers 19 and 54 is greater than the difference between the two numbers 137 and 67, enter the difference between the sum and the difference.If it is greater than the sum, enter the difference between the difference and the sum.",
+                type: "nopattern",
+                CorrectAnswer: '3',
                 answer: ""
             }
             ,
             {
-                question: "category 28 4of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "If the sum of the two numbers 49 and 57 is greater than the difference between the two numbers 429 and 380, enter the difference between the sum and the difference.If it is greater than the sum, enter the difference between the difference and the sum.",
+                type: "nopattern",
+                CorrectAnswer: '57',
                 answer: ""
             }
             ,
             {
-                question: "category 28 5of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "If the sum of the two numbers 24 and 63 is greater than the difference between the two numbers 245 and 163, enter the difference between the sum and the difference.If it is greater than the sum, enter the difference between the difference and the sum.",
+                type: "nopattern",
+                CorrectAnswer: '5',
                 answer: ""
             }
         ]
@@ -1597,38 +1646,43 @@ var assessment2questions = [
         category: 29,
         questions: [
             {
-                question: "category 29 1of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "Find the third digit of the next-to-smallest number in this series,add 3 to it, and enter the outcome :",
+                patternquestion:"89423    56743    48630    12479    10226",
+                type: "pattern2",
+                CorrectAnswer: '7',
                 answer: ""
 
             }
             ,
             {
-                question: "category 29 2of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "Find the third digit of the next-to-smallest number in this series,add 7 to it, and enter the outcome :",
+                patternquestion:"98123    82347    98137    81123    71235",
+                type: "pattern2",
+                CorrectAnswer: '8',
                 answer: ""
             }
             ,
             {
-                question: "category 29 3of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "Find the third digit of the next-to-smallest number in this series,add 5 to it, and enter the outcome :",
+                patternquestion:"11340    12004    20015    18664    12076",
+                type: "pattern2",
+                CorrectAnswer: '5',
                 answer: ""
             }
             ,
             {
-                question: "category 29 4of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "Find the third digit of the next-to-smallest number in this series,add 7 to it, and enter the outcome :",
+                patternquestion:"81123    64752    62213    51137    70879",
+                type: "pattern2",
+                CorrectAnswer: '9',
                 answer: ""
             }
             ,
             {
-                question: "category 29 5of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "Find the third digit of the next-to-smallest number in this series,add 1 to it, and enter the outcome :",
+                patternquestion:"52235    56641    42250    52709    56624",
+                type: "pattern2",
+                CorrectAnswer: '3',
                 answer: ""
             }
         ]
@@ -2243,4 +2297,67 @@ var assessment1questions = [
         patternquestion: "B+.*956*|3$",
         patternquestion1: "B+.*956*|3$",
         type: "trueorfalse", Ans: "Identical"}
+];
+
+var interviewquestions = [
+    {
+        index:1,
+        questions:"Tell me of an opportunity where you have had to improve a situation? How you did, what you did, any problems and outcome?"
+    },
+    {
+        index:2,
+        questions:"Tell me when you have had to teach and train someone else at work? How you did, what you did, any problems and outcome?",
+    },
+    {
+        index:3,
+        questions:"Tell me when you have had to deal with a complex project, situation or problem and how you solved it?",
+    },
+    {
+        index:4,
+        questions:"Tell me you have built a relationship with someone from a different background? How you did, what you did, any problems and outcome?",
+    },
+    {
+        index:5,
+        questions:"Tell me when you have identified a problem with the level of service quality? How you did, what you did, any problems and outcome?",
+    },
+    {
+        index:6,
+        questions:"Tell me when you have had to do a repetitive task? How did you ensure quality was kept, how did you keep focused and motivated?",
+    },
+    {
+        index:7,
+        questions:"Tell me of a time when you have had to  motivate a colleague? How you did, what you did, any problems and outcome?",
+    },
+    {
+        index:8,
+        questions:"Tell me of a time when you were introduced a change at work? How you did, what you did, any problems and outcome?",
+    },
+    {
+        index:9,
+        questions:"Tell me of a time when you have sort to develop yourself?",
+    },
+    {
+        index:10,
+        questions:"Tell me of a time you have helped a colleague to resolve a work problem?",
+    },
+    {
+        index:11,
+        questions:"Do you/can you work/have you worked? shift work, overtime, repetitive work environment?",
+    },
+    {
+        index:12,
+        questions:"Why do you want to work for JLR?",
+    },
+    {
+        index:13,
+        questions:"How will you travel to JLR?",
+    },
+    {
+        index:14,
+        questions:"Tell me of skills you bring & transferrable from previous employment?",
+    },
+    {
+        index:15,
+        questions:"Tell me of a time when you made a mistake? How did you correct it?"
+    }
 ];
