@@ -1090,38 +1090,48 @@ var assessment2questions = [
         category: 17,
         questions: [
             {
-                question: "category 17 1of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "If the following two numbers are the same, enter 23. If the right number is two times the left enter 8. If the right number is smaller than the left, enter 2.",
+                patternquestion1:"52341164",
+                patternquestion2:"52341162",
+                type: "pattern3",
+                CorrectAnswer: '2',
                 answer: ""
 
             }
             ,
             {
-                question: "category 17 2of5",
-                type: "pattern",
+                question: "If the following two numbers are the same, enter 88. If the right number is three times the left enter 6. If the right number is smaller than the left, enter 0.",
+                patternquestion1:"23541231",
+                patternquestion2:"70623693",
+                type: "pattern3",
+                CorrectAnswer: '6',
+                answer: ""
+            }
+            ,
+            {
+                question: "If the following two numbers are the same, enter 14. If the right number is ten times the left enter 0. If the right number is smaller than the left, enter 5.",
+                patternquestion1:"11000000",
+                patternquestion2:"110000000",
+                type: "pattern3",
                 CorrectAnswer: '0',
                 answer: ""
             }
             ,
             {
-                question: "category 17 3of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "If the following two numbers are the same, enter 86. If the right number is four times the left enter 4. If the right number is smaller than the left, enter 7.",
+                patternquestion1:"78221684",
+                patternquestion2:"78221684",
+                type: "pattern3",
+                CorrectAnswer: '86',
                 answer: ""
             }
             ,
             {
-                question: "category 17 4of5",
-                type: "pattern",
-                CorrectAnswer: '0',
-                answer: ""
-            }
-            ,
-            {
-                question: "category 17 5of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "If the following two numbers are the same, enter 30. If the right number is six times the left enter 1. If the right number is smaller than the left, enter 3.",
+                patternquestion1:"21364557",
+                patternquestion2:"21364575",
+                type: "pattern3",
+                CorrectAnswer: '3',
                 answer: ""
             }
         ]
@@ -1131,38 +1141,43 @@ var assessment2questions = [
         category: 18,
         questions: [
             {
-                question: "category 18 1of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "Enter the number of the group of letters that differs from the others:",
+                patternquestion:"1)  KKLM    2)  QQRS    3)  NNOP    4)  HHIK",
+                type: "pattern2",
+                CorrectAnswer: '4',
                 answer: ""
 
             }
             ,
             {
-                question: "category 18 2of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "Enter the number of the group of letters that differs from the others:",
+                patternquestion:"1)  WWXZ   2)  RRST   3)  CCDE   4)  MMNO",
+                type: "pattern2",
+                CorrectAnswer: '1',
                 answer: ""
             }
             ,
             {
-                question: "category 18 3of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "Enter the number of the group of letters that differs from the others:",
+                patternquestion:"1)  LMMN   2)  ABBC   3)  PQQR   4)  IKKL",
+                type: "pattern2",
+                CorrectAnswer: '4',
                 answer: ""
             }
             ,
             {
-                question: "category 18 4of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "Enter the number of the group of letters that differs from the others:",
+                patternquestion:"1)  HIJJ   2)  MNOO   3)  DEGG   4)  STUU",
+                type: "pattern2",
+                CorrectAnswer: '3',
                 answer: ""
             }
             ,
             {
-                question: "category 18 5of5",
-                type: "pattern",
-                CorrectAnswer: '0',
+                question: "Enter the number of the group of letters that differs from the others:",
+                patternquestion:"1)  KKLM   2)  FFGJ   3)  VVWX   4)  OOPQ",
+                type: "pattern2",
+                CorrectAnswer: '2',
                 answer: ""
             }
         ]
