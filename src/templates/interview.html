@@ -1,7 +1,7 @@
 <section class="section container-fluid" ng-controller="InterviewController as interview">
-    <div  class="scrollable" style="background-color: #FFFFFF;">
+    <div  class="scrollable">
         <div class="container-fluid scrollable-content">
-            <h3 class="page-header">Welcome to Interview Page</h3>
+            <h3 class="page-header">Interview Questions</h3>
             <div class="panel-group" ui-state="myAccordion" ui-default="-1">
                 <div class="panel panel-default" ng-repeat="i in interview.questions">
                     <div class="panel-heading" ui-set="{'myAccordion': i.index}">        
