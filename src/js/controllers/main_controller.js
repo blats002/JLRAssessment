@@ -26,6 +26,7 @@ function getTimeString(timeCount) {
 var mainCtrl;
 var testCtrl;
 var interviewCtrl;
+var manualCtrl;
 
 Array.prototype.shuffle = function () {
     var i = this.length, j, temp;
@@ -49,6 +50,8 @@ angular.module('JLRAssessment.controllers.Main', [])
             
             mainCtrl.showTest1PageLinks = false;
             mainCtrl.showTest2PageLinks = false;
+            mainCtrl.showInterview = false;
+            hideExit=false;
             
 //            for (var x = 0; x < 61; x++) {
 //                $scope.test1PageLinks.push(x+1);
@@ -91,6 +94,7 @@ angular.module('JLRAssessment.controllers.Main', [])
             mainCtrl.showButtonNav = true;
             testCtrl = this;
             testCtrl.showModal1 = false;
+            mainCtrl.hideExit=true;
 
             testCtrl.closeTimeUpModal = function () {
                 testCtrl.timeUpModal = false;
@@ -291,8 +295,46 @@ This test is not timed.",
         .controller('InterviewController', function ($scope, $rootScope, $routeParams, ngDialog, $timeout) {
             interviewCtrl = this;
             interviewCtrl.questions=interviewquestions;
+            interviewCtrl.showQuestion = false;
+            mainCtrl.showPrevious = false;
+            mainCtrl.showNext = true;
+            mainCtrl.hideExit = false;
+            mainCtrl.next = function () {
+                interviewCtrl.showQuestion = true;
+                mainCtrl.showPrevious = true;
+                mainCtrl.showNext = false;
+            };
+            mainCtrl.previous = function () {
+                interviewCtrl.showQuestion = false;
+                mainCtrl.showPrevious = false;
+                mainCtrl.showNext = true;
+            };
+        })
+        .controller('ManualController', function ($scope, $rootScope, $routeParams, ngDialog, $timeout) {
+            manualCtrl = this;
+            manualCtrl.page = 1;
+            manualCtrl.showTitle=false;
+            manualCtrl.title = "";
+            manualCtrl.pageBody = "";
+            manualCtrl.gotoPage = function (page) {
+                manualCtrl.page = page;
+                mainCtrl.showPrevious = manualCtrl.page > 1;
+                mainCtrl.showNext = manualCtrl.page > 0 && manualCtrl.page < 3;
+            };
+            mainCtrl.showPrevious = false;
+            mainCtrl.showNext = true;
+            mainCtrl.hideExit = false;
+            
+            manualCtrl.gotoPage(manualCtrl.page);
+            mainCtrl.next = function () {
+                manualCtrl.gotoPage(manualCtrl.page+1);
+            };
+            mainCtrl.previous = function () {
+                manualCtrl.gotoPage(manualCtrl.page-1);
+            };
+            
         });
-
+        
 var assessment2questions = [
     {
         category: 1,
@@ -2302,23 +2344,23 @@ var assessment1questions = [
 var interviewquestions = [
     {
         index:1,
-        questions:"Tell me of an opportunity where you have had to improve a situation? How you did, what you did, any problems and outcome?"
+        questions:"What are your strengths and weaknesses?"
     },
     {
         index:2,
-        questions:"Tell me when you have had to teach and train someone else at work? How you did, what you did, any problems and outcome?",
+        questions:"Tell me of an opportunity where you have had to improve a situation? How you did, what you did, any problems and outcome?",
     },
     {
         index:3,
-        questions:"Tell me when you have had to deal with a complex project, situation or problem and how you solved it?",
+        questions:"Tell me when you have had to teach and train someone else at work? How you did, what you did, any problems and outcome?",
     },
     {
         index:4,
-        questions:"Tell me you have built a relationship with someone from a different background? How you did, what you did, any problems and outcome?",
+        questions:"Why should we hire you? or What can you do for us that other candidates can't?",
     },
     {
         index:5,
-        questions:"Tell me when you have identified a problem with the level of service quality? How you did, what you did, any problems and outcome?",
+        questions:"Tell me when you have had to deal with a complex project, situation or problem and how you solved it?",
     },
     {
         index:6,
@@ -2326,38 +2368,70 @@ var interviewquestions = [
     },
     {
         index:7,
-        questions:"Tell me of a time when you have had to  motivate a colleague? How you did, what you did, any problems and outcome?",
+        questions:"Tell me you have built a relationship with someone from a different background?",
     },
     {
         index:8,
-        questions:"Tell me of a time when you were introduced a change at work? How you did, what you did, any problems and outcome?",
+        questions:"Tell me when you have identified a problem with the level of service quality? How you did, what you did, any problems and outcome?",
     },
     {
         index:9,
-        questions:"Tell me of a time when you have sort to develop yourself?",
+        questions:"How would you describe yourself?",
     },
     {
         index:10,
-        questions:"Tell me of a time you have helped a colleague to resolve a work problem?",
+        questions:"What are your goals? Where do you see yourself in five years time?",
     },
     {
         index:11,
-        questions:"Do you/can you work/have you worked? shift work, overtime, repetitive work environment?",
+        questions:"Tell me when you have had to do a repetitive task? How did you ensure quality was kept, how did you keep focused and motivated?",
     },
     {
         index:12,
-        questions:"Why do you want to work for JLR?",
+        questions:"What do you know about JLR?",
     },
     {
         index:13,
-        questions:"How will you travel to JLR?",
+        questions:"Tell me of a time when you have had to motivate a colleague? How you did, what you did, any problems and outcome?",
     },
     {
         index:14,
-        questions:"Tell me of skills you bring & transferrable from previous employment?",
+        questions:"What do you think the main challenges will be with the job?",
     },
     {
         index:15,
+        questions:"Which tasks do you get the most satisfaction from?"
+    },
+    {
+        index:16,
+        questions:"Tell me of a time when you were introduced a change at work? How you did, what you did, any problems and outcome?"
+    },
+    {
+        index:17,
+        questions:"What makes a good team member?"
+    },
+    {
+        index:18,
+        questions:"Tell me of a time when you have sort to develop yourself?"
+    },
+    {
+        index:19,
+        questions:"Do you/can you work/have you worked? shift work, overtime, repetitive work environment?"
+    },
+    {
+        index:20,
+        questions:"Why do you want to work for JLR?"
+    },
+    {
+        index:21,
+        questions:" How will you travel to JLR?"
+    },
+    {
+        index:22,
+        questions:"Tell me of skills you bring & transferrable from previous employment?"
+    },
+    {
+        index:23,
         questions:"Tell me of a time when you made a mistake? How did you correct it?"
     }
 ];

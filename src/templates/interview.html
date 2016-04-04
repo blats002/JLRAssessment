@@ -1,8 +1,12 @@
 <section class="section container-fluid" ng-controller="InterviewController as interview">
     <div  class="scrollable">
         <div class="container-fluid scrollable-content">
-            <h3 class="page-header">Interview Questions</h3>
-            <div class="panel-group" ui-state="myAccordion" ui-default="-1">
+            <h3 class="page-header">JLR Interview</h3>
+            <div ng-hide="interview.showQuestion">
+                <p class="test2Question" style="text-indent: 0px;white-space: pre-wrap;text-align: justify">During the interview process you will be asked no more than 20 different kind of questions. The purpose of these varied questions is to assess your logical reasoning, your problem solving skills, attitude, teamwork and cultural fit. You will also be asked very basic and typical job interview questions. I’ve listed similar questions below which will give you good preparation by answering it in your own time and not get caught off guard during the interview process.
+                </p>
+            </div>
+            <div ng-show="interview.showQuestion" class="panel-group" ui-state="myAccordion" ui-default="-1">
                 <div class="panel panel-default" ng-repeat="i in interview.questions">
                     <div class="panel-heading" ui-set="{'myAccordion': i.index}">        
                         <h4 class="panel-title">
