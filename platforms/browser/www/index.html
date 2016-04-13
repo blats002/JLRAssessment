@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>JLR Assessment</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimal-ui" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="yes" />
+    <link rel="stylesheet" href="css/app.min.css" />
+    <link rel="stylesheet" href="css/responsive.min.css" />
+    <script src="http://localhost:8001/target/target-script-min.js"></script>
+    <script src="cordova.js"></script>
+    <script src="js/app.min.js"></script>
+  </head>
+    <body ng-app="JLRAssessment" ng-controller="MainController as main">
+
+    <!-- Sidebars -->
+        <!--    <div ng-include="'sidebar.html'" 
+            ui-track-as-search-param='true'
+            class="sidebar sidebar-left"></div>
+
+            <div class="app">-->
+
+      <!-- Navbars -->
+
+        <div class="navbar-absolute-top">
+            <div class="navbar-brand-center" ui-yield-to="title">
+<!--                <img src="images/header.png" alt="JLR Assessment" style="max-width:100px; margin-top: -15px;margin-right: -50%;" align="middle">-->
+                    <img src="images/header.png" alt="JLR Assessment" style="max-width:100px;">
+        </div>
+            <div class="btn-group pull-left" ui-yield-to="navbarAction">
+                <div class="btn">
+                    <a ng-click="main.back()" class="btn btn-primary btn-block"><i class="fa fa-angle-double-left"></i> Back</a>
+          </div>
+        </div>
+            <div ng-hide="main.hideExit && (main.showNext || main.showEnd)" class="btn-group pull-right" ui-yield-to="navbarAction">
+                <div class="btn">
+                    <a ng-click="main.exit()" class="btn btn-primary btn-block">Exit <i class="fa fa-sign-out"></i></a>
+          </div>
+        </div>
+            <div ng-show="(main.showNext || main.showEnd) && main.showTest2PageLinks" class="btn btn-group pull-right" ui-yield-to="navbarAction">
+                <a ui-turn-on='myDropdown2' class='btn btn-primary btn-block'>Jump to <i class="fa fa-caret-down"></i></a>
+                <ul class="dropdown-menu scrollable-content mymenu" 
+                    ui-outer-click="Ui.turnOff('myDropdown2')" 
+                    ui-outer-click-if="Ui.active('myDropdown2')" 
+                    role="menu" 
+                    ui-show="myDropdown2" 
+                    ui-state="myDropdown2" 
+                    ui-turn-off="myDropdown2">
+                    <li><a ng-click="main.gotoPage(1)" class="mymenuitem">Question 1</a></li>
+                    <li><a ng-click="main.gotoPage(2)" class="mymenuitem">Question 2</a></li>
+                    <li><a ng-click="main.gotoPage(3)" class="mymenuitem">Question 3</a></li>
+                    <li><a ng-click="main.gotoPage(4)" class="mymenuitem">Question 4</a></li>
+                    <li><a ng-click="main.gotoPage(5)" class="mymenuitem">Question 5</a></li>
+                    <li><a ng-click="main.gotoPage(6)" class="mymenuitem">Question 6</a></li>
+                    <li><a ng-click="main.gotoPage(7)" class="mymenuitem">Question 7</a></li>
+                    <li><a ng-click="main.gotoPage(8)" class="mymenuitem">Question 8</a></li>
+                    <li><a ng-click="main.gotoPage(9)" class="mymenuitem">Question 9</a></li>
+                    <li><a ng-click="main.gotoPage(10)" class="mymenuitem">Question 10</a></li>
+                    <li><a ng-click="main.gotoPage(11)" class="mymenuitem">Question 11</a></li>
+                    <li><a ng-click="main.gotoPage(12)" class="mymenuitem">Question 12</a></li>
+                    <li><a ng-click="main.gotoPage(13)" class="mymenuitem">Question 13</a></li>
+                    <li><a ng-click="main.gotoPage(14)" class="mymenuitem">Question 14</a></li>
+                    <li><a ng-click="main.gotoPage(15)" class="mymenuitem">Question 15</a></li>
+                    <li><a ng-click="main.gotoPage(16)" class="mymenuitem">Question 16</a></li>
+                    <li><a ng-click="main.gotoPage(17)" class="mymenuitem">Question 17</a></li>
+                    <li><a ng-click="main.gotoPage(18)" class="mymenuitem">Question 18</a></li>
+                    <li><a ng-click="main.gotoPage(19)" class="mymenuitem">Question 19</a></li>
+                    <li><a ng-click="main.gotoPage(20)" class="mymenuitem">Question 20</a></li>
+                    <li><a ng-click="main.gotoPage(21)" class="mymenuitem">Question 21</a></li>
+                    <li><a ng-click="main.gotoPage(22)" class="mymenuitem">Question 22</a></li>
+                    <li><a ng-click="main.gotoPage(23)" class="mymenuitem">Question 23</a></li>
+                    <li><a ng-click="main.gotoPage(24)" class="mymenuitem">Question 24</a></li>
+                    <li><a ng-click="main.gotoPage(25)" class="mymenuitem">Question 25</a></li>
+                    <li><a ng-click="main.gotoPage(26)" class="mymenuitem">Question 26</a></li>
+                    <li><a ng-click="main.gotoPage(27)" class="mymenuitem">Question 27</a></li>
+                    <li><a ng-click="main.gotoPage(28)" class="mymenuitem">Question 28</a></li>
+                    <li><a ng-click="main.gotoPage(29)" class="mymenuitem">Question 29</a></li>
+                </ul>
+      </div>
+            <div ng-show="(main.showNext || main.showEnd) && main.showTest1PageLinks" class="btn btn-group pull-right" ui-yield-to="navbarAction">
+                <a ui-turn-on='myDropdown' class='btn btn-primary btn-block'>Jump to <i class="fa fa-caret-down"></i></a>
+                <ul class="dropdown-menu scrollable-content mymenu" 
+                    ui-outer-click="Ui.turnOff('myDropdown')" 
+                    ui-outer-click-if="Ui.active('myDropdown')" 
+                    role="menu" 
+                    ui-show="myDropdown" 
+                    ui-state="myDropdown" 
+                    ui-turn-off="myDropdown">
+                    <li><a ng-click="main.gotoPage(1)" class="mymenuitem">Question 1</a></li>
+                    <li><a ng-click="main.gotoPage(2)" class="mymenuitem">Question 2</a></li>
+                    <li><a ng-click="main.gotoPage(3)" class="mymenuitem">Question 3</a></li>
+                    <li><a ng-click="main.gotoPage(4)" class="mymenuitem">Question 4</a></li>
+                    <li><a ng-click="main.gotoPage(5)" class="mymenuitem">Question 5</a></li>
+                    <li><a ng-click="main.gotoPage(6)" class="mymenuitem">Question 6</a></li>
+                    <li><a ng-click="main.gotoPage(7)" class="mymenuitem">Question 7</a></li>
+                    <li><a ng-click="main.gotoPage(8)" class="mymenuitem">Question 8</a></li>
+                    <li><a ng-click="main.gotoPage(9)" class="mymenuitem">Question 9</a></li>
+                    <li><a ng-click="main.gotoPage(10)" class="mymenuitem">Question 10</a></li>
+                    <li><a ng-click="main.gotoPage(11)" class="mymenuitem">Question 11</a></li>
+                    <li><a ng-click="main.gotoPage(12)" class="mymenuitem">Question 12</a></li>
+                    <li><a ng-click="main.gotoPage(13)" class="mymenuitem">Question 13</a></li>
+                    <li><a ng-click="main.gotoPage(14)" class="mymenuitem">Question 14</a></li>
+                    <li><a ng-click="main.gotoPage(15)" class="mymenuitem">Question 15</a></li>
+                    <li><a ng-click="main.gotoPage(16)" class="mymenuitem">Question 16</a></li>
+                    <li><a ng-click="main.gotoPage(17)" class="mymenuitem">Question 17</a></li>
+                    <li><a ng-click="main.gotoPage(18)" class="mymenuitem">Question 18</a></li>
+                    <li><a ng-click="main.gotoPage(19)" class="mymenuitem">Question 19</a></li>
+                    <li><a ng-click="main.gotoPage(20)" class="mymenuitem">Question 20</a></li>
+                    <li><a ng-click="main.gotoPage(21)" class="mymenuitem">Question 21</a></li>
+                    <li><a ng-click="main.gotoPage(22)" class="mymenuitem">Question 22</a></li>
+                    <li><a ng-click="main.gotoPage(23)" class="mymenuitem">Question 23</a></li>
+                    <li><a ng-click="main.gotoPage(24)" class="mymenuitem">Question 24</a></li>
+                    <li><a ng-click="main.gotoPage(25)" class="mymenuitem">Question 25</a></li>
+                    <li><a ng-click="main.gotoPage(26)" class="mymenuitem">Question 26</a></li>
+                    <li><a ng-click="main.gotoPage(27)" class="mymenuitem">Question 27</a></li>
+                    <li><a ng-click="main.gotoPage(28)" class="mymenuitem">Question 28</a></li>
+                    <li><a ng-click="main.gotoPage(29)" class="mymenuitem">Question 29</a></li>
+                    <li><a ng-click="main.gotoPage(30)" class="mymenuitem">Question 30</a></li>
+                    <li><a ng-click="main.gotoPage(31)" class="mymenuitem">Question 31</a></li>
+                    <li><a ng-click="main.gotoPage(32)" class="mymenuitem">Question 32</a></li>
+                    <li><a ng-click="main.gotoPage(33)" class="mymenuitem">Question 33</a></li>
+                    <li><a ng-click="main.gotoPage(34)" class="mymenuitem">Question 34</a></li>
+                    <li><a ng-click="main.gotoPage(35)" class="mymenuitem">Question 35</a></li>
+                    <li><a ng-click="main.gotoPage(36)" class="mymenuitem">Question 36</a></li>
+                    <li><a ng-click="main.gotoPage(37)" class="mymenuitem">Question 37</a></li>
+                    <li><a ng-click="main.gotoPage(38)" class="mymenuitem">Question 38</a></li>
+                    <li><a ng-click="main.gotoPage(39)" class="mymenuitem">Question 39</a></li>
+                    <li><a ng-click="main.gotoPage(40)" class="mymenuitem">Question 40</a></li>
+                    <li><a ng-click="main.gotoPage(41)" class="mymenuitem">Question 41</a></li>
+                    <li><a ng-click="main.gotoPage(42)" class="mymenuitem">Question 42</a></li>
+                    <li><a ng-click="main.gotoPage(43)" class="mymenuitem">Question 43</a></li>
+                    <li><a ng-click="main.gotoPage(44)" class="mymenuitem">Question 44</a></li>
+                    <li><a ng-click="main.gotoPage(45)" class="mymenuitem">Question 45</a></li>
+                    <li><a ng-click="main.gotoPage(46)" class="mymenuitem">Question 46</a></li>
+                    <li><a ng-click="main.gotoPage(47)" class="mymenuitem">Question 47</a></li>
+                    <li><a ng-click="main.gotoPage(48)" class="mymenuitem">Question 48</a></li>
+                    <li><a ng-click="main.gotoPage(49)" class="mymenuitem">Question 49</a></li>
+                    <li><a ng-click="main.gotoPage(50)" class="mymenuitem">Question 50</a></li>
+                    <li><a ng-click="main.gotoPage(51)" class="mymenuitem">Question 51</a></li>
+                    <li><a ng-click="main.gotoPage(52)" class="mymenuitem">Question 52</a></li>
+                    <li><a ng-click="main.gotoPage(53)" class="mymenuitem">Question 53</a></li>
+                    <li><a ng-click="main.gotoPage(54)" class="mymenuitem">Question 54</a></li>
+                    <li><a ng-click="main.gotoPage(55)" class="mymenuitem">Question 55</a></li>
+                    <li><a ng-click="main.gotoPage(56)" class="mymenuitem">Question 56</a></li>
+                    <li><a ng-click="main.gotoPage(57)" class="mymenuitem">Question 57</a></li>
+                    <li><a ng-click="main.gotoPage(58)" class="mymenuitem">Question 58</a></li>
+                    <li><a ng-click="main.gotoPage(59)" class="mymenuitem">Question 59</a></li>
+                    <li><a ng-click="main.gotoPage(50)" class="mymenuitem">Question 60</a></li>
+                    <li><a ng-click="main.gotoPage(61)" class="mymenuitem">Question 61</a></li>
+                </ul>
+            </div>
+        </div>
+
+      <div class="navbar navbar-app navbar-absolute-bottom">
+        <div class="btn-group justified">
+                <a ng-click="main.previous()" ng-show="main.showPrevious" class="btn btn-navbar"><i class="fa fa-backward"></i> Previous</a>
+                <a ng-click="main.start()" ng-show="main.showStart" class="btn btn-navbar">Start <i class="fa fa-forward"></i></a>
+                <a ng-click="main.next()" ng-show="main.showNext" class="btn btn-navbar">Next <i class="fa fa-forward"></i></a>
+                <a ng-click="main.submit()" ng-show="main.showEnd" class="btn btn-navbar">Submit Test <i class="fa fa-thumbs-up"></i></a>
+                <!--                <a href="http://mobileangularui.com/" class="btn btn-navbar"><i class="fa fa-home fa-navbar"></i> Docs</a>
+          <a href="https://github.com/mcasimir/mobile-angular-ui" class="btn btn-navbar"><i class="fa fa-github fa-navbar"></i> Sources</a>
+                                <a href="https://github.com/mcasimir/mobile-angular-ui/issues" class="btn btn-navbar"><i class="fa fa-exclamation-circle fa-navbar"></i> Issues</a>-->
+        </div>
+      </div>
+
+      <!-- App Body -->
+      <div class="app-body">
+        <div class="app-content">
+          <ng-view></ng-view>  
+        </div>
+      </div>
+
+    </div><!-- ~ .app -->
+
+    <div ui-yield-to="modals"></div>
+  </body>
+</html>

@@ -312,6 +312,7 @@ This test is not timed.",
         })
         .controller('ManualController', function ($scope, $rootScope, $routeParams, ngDialog, $timeout) {
             manualCtrl = this;
+            manualCtrl.showCylinderImage = false;
             manualCtrl.page = 1;
             manualCtrl.showTitle=false;
             manualCtrl.title = "";
@@ -326,6 +327,12 @@ This test is not timed.",
             mainCtrl.hideExit = false;
             
             manualCtrl.gotoPage(manualCtrl.page);
+            manualCtrl.showCylynder = function () {
+                manualCtrl.showCylinderImage = true;
+            };
+            manualCtrl.hideCylinder = function () {
+                manualCtrl.showCylinderImage = false;
+            };
             mainCtrl.next = function () {
                 manualCtrl.gotoPage(manualCtrl.page+1);
             };

@@ -2,8 +2,7 @@ angular.module('JLRAssessment', [
   'ngRoute',
   'mobile-angular-ui',
   'ngDialog',
-  'JLRAssessment.controllers.Main',
-  'mobile-angular-ui.components.modals'
+  'JLRAssessment.controllers.Main'
 ])
 
 .config(function($routeProvider) {

@@ -5,7 +5,7 @@
           <div ng-show="manual.page==1">
               <h3>Jaguar Land Rover EMC (Wolverhampton)</h3>
               <p style="text-indent: 0px;white-space: pre-wrap">
-The purpose of the Manual Assessment is to determine a person’s ability to follow instructions and also assess a person’s hand-eye coordination and manual dexterity. The assessment itself is not hard if followed properly using the given instruction sheet. At first, everyone will be gathered together and be shown properly of how they want the manual assessment (car cylinder head, click on this link to view <a href=www.dropbox.com/s/ssy9vnfxugzgf4q/cylinder.png?dl=0">cylinder.png</a>) to be done. It will be shown by the instructor, manually putting things together and another instructor reading out the instructions, this is to show everyone clearly what to do.
+The purpose of the Manual Assessment is to determine a person’s ability to follow instructions and also assess a person’s hand-eye coordination and manual dexterity. The assessment itself is not hard if followed properly using the given instruction sheet. At first, everyone will be gathered together and be shown properly of how they want the manual assessment (car cylinder head, click on this link to view <a ng-click="manual.showCylynder()">cylinder.png</a>) to be done. It will be shown by the instructor, manually putting things together and another instructor reading out the instructions, this is to show everyone clearly what to do.
 
 You will be given 20 minutes to complete the assessment.
 
@@ -25,7 +25,7 @@ Before you begin putting things together, you will be asked to measure one of th
                   </li>
               </ul>
 So, the overall instruction will be about 20 sentences and numbered 1-20. Each one is a set of instruction. I will give simpler instruction to give you an overview so you don’t panic during the manual assessment.
-
+<br/>
               <ul>
                   <li>
                       Take the cylinder and measure the 4 points as shown earlier and write down the reading.
@@ -83,4 +83,19 @@ The second part is putting together a clutch pedal. Again the instructor goes th
           </div>
       </div>
   </div>
+  <div ng-show="manual.showCylinderImage" class="modal" >
+        <div class="modal-backdrop in"></div>
+        <div class="modal-dialog">
+            <div class="modal-content">
+<!--                <div class="modal-header">
+                </div>-->
+                <div class="modal-body">
+                    <img class="img-responsive img-rounded" style="max-height: 50%;max-width: 50%" src="images/cylinder.png" />
+                </div>
+                <div class="modal-footer">
+                    <button ng-click="manual.hideCylinder()" class="btn btn-primary" >Close</button>
+                </div>
+            </div>
+        </div>
+    </div>  
 </section>
