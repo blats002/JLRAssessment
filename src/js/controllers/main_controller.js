@@ -108,11 +108,11 @@ angular.module('JLRAssessment.controllers.Main', [])
                     id: 1,
                     name: 'Assessment 1',
                     timed: true,                  
-                    description: "The following assessment tool is designed to assess your ability to pay attention to detail.\n\
+                    description: "This assessment is our way to determine your ability to pay attention to details which JLR champions on all its workers.\n\
 \n\
-For each item in the assessment, you will be presented with two sets of characters. Your task will be to examin the two sets carefully, and decide wehter or not they are identical.\n\
+All you required to do is identify if the two set of characters presented are similar or not.\n\
 \n\
-If the two sets are identical, click on the answer labelled identical. If the two sets are not Identical, click on the answer labelled Not Identical.\n\
+You simple choose 'Identical' or 'Not Identical' on the set of characters given.\n\
 \n\
 You must work quickly and accurately.",
                     questions: assessment1questions
@@ -121,11 +121,11 @@ You must work quickly and accurately.",
                     id: 2,
                     name: 'Review Assessment 1',
                     timed: false,
-                    description: "The following assessment tool is designed to assess your ability to pay attention to detail.\n\
+                    description: "This assessment is our way to determine your ability to pay attention to details which JLR champions on all its workers.\n\
 \n\
-For each item in the assessment, you will be presented with two sets of characters. Your task will be to examin the two sets carefully, and decide wehter or not they are identical.\n\
+All you required to do is identify if the two set of characters presented are similar or not.\n\
 \n\
-If the two sets are identical, click on the answer labelled identical. If the two sets are not Identical, click on the answer labelled Not Identical.\n\
+You simple choose 'Identical' or 'Not Identical' on the set of characters given.\n\
 \n\
 This test is not timed.",
                     questions: assessment1questions
@@ -133,11 +133,11 @@ This test is not timed.",
                 {
                     id: 3,
                     name: 'Assessment 2',
-                    description: "The following assessment tool is designed to measure your ability to follow a given set of instructions.\n\
+                    description: "This assessment test is our way to determine a person's behaviour under a situation where s/he will be given a set of instructions to fulfil. JLR would like the right people who are capable of following a set of instructions.\n\
 \n\
-Durring the assessment, you will be given two types of instructions. The first type will refer to a set of numbers and letters that will appear on the screen. The second type will be independent questions, unrelated to the set of numbers.\n\
+This assessment is broken down in two parts. You will be asked to follow a set of instructions to locate letters and numbers on a specific place or order and may require basic arithmetics. The second part of the assessment are random set of questions that are still relevant to measure your ability to follow instructions.\n\
 \n\
-Your task will be to type in the appropriate answer for each questions in the spaces provided.\n\
+Please give your answer on the box provided, the app is designed to ensure the least interference.\n\
 \n\
 You must work quickly and accurately.",
                     timed: true,
@@ -146,11 +146,11 @@ You must work quickly and accurately.",
                 {
                     id: 4,
                     name: 'Review Assessment 2',
-                    description: "The following assessment tool is designed to measure your ability to follow a given set of instructions.\n\
+                    description: "This assessment test is our way to determine a person's behaviour under a situation where s/he will be given a set of instructions to fulfil. JLR would like the right people who are capable of following a set of instructions.\n\
 \n\
-Durring the assessment, you will be given two types of instructions. The first type will refer to a set of numbers and letters that will appear on the screen. The second type will be independent questions, unrelated to the set of numbers.\n\
+This assessment is broken down in two parts. You will be asked to follow a set of instructions to locate letters and numbers on a specific place or order and may require basic arithmetics. The second part of the assessment are random set of questions that are still relevant to measure your ability to follow instructions.\n\
 \n\
-Your task will be to type in the appropriate answer for each questions in the spaces provided.\n\
+Please give your answer on the box provided, the app is designed to ensure the least interference.\n\
 \n\
 This test is not timed.",
                     timed: false,
@@ -893,7 +893,7 @@ var assessment2questions = [
             }
             ,
             {
-                patternquestion:"W I C B A G W R F B J L D F E U P Q K H D N V M X\n\\n\
+                patternquestion:"W I C B A G W R F B J L D F E U P Q K H D N V M X\n\
 4 8 9 4 2 0 6 3 5 7 9 6 3 2 1 3 0 8 9 5 7 1 5 9 2",
                 question: "Add up the digits that appear under “C“ and then add up the digits that appear under “Q“. If the first sum is larger that the second, enter the sum of the second. If the second is larger that the first, enter the sum of the first, if they are equal, enter 53.",
                 type: "pattern",
