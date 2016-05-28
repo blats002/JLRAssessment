@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.jlr.assessment" version="0.0.10" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="co.uk.jaguarlandroverassessment" version="0.0.13" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>JLR Assessment</name>
     <description>
         A simple Assessment tool for JLR.
@@ -10,12 +10,15 @@
     <content src="index.html" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="android-minSdkVersion" value="14" />
+    <preference name="StatusBarOverlaysWebView" value="false"/>
+    <preference name="StatusBarBackgroundColor" value="#FFFFFF"/>
+    <preference name="StatusBarStyle" value="default" />
     <plugin name="cordova-plugin-battery-status" source="npm" spec="&gt;1.0.0" />
     <!--<plugin name="cordova-plugin-camera" source="npm" spec="&gt;1.0.0" />-->
     <!--<plugin name="cordova-plugin-media-capture" source="npm" spec="&gt;1.0.0" />-->
     <plugin name="cordova-plugin-console" source="npm" spec="&gt;1.0.0" />
     <!--<plugin name="cordova-plugin-contacts" source="npm" spec="&gt;1.0.0" />-->
-    <!--<plugin name="cordova-plugin-device" source="npm" spec="&gt;1.0.0" />-->
+    <plugin name="cordova-plugin-device" source="npm" spec="&gt;1.0.0" />
     <!--<plugin name="cordova-plugin-device-motion" source="npm" spec="&gt;1.0.0" />-->
     <!--<plugin name="cordova-plugin-device-orientation" source="npm" spec="&gt;1.0.0" />-->
     <plugin name="cordova-plugin-dialogs" source="npm" spec="&gt;1.0.0" />

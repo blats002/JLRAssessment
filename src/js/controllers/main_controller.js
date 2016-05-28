@@ -3,6 +3,9 @@ document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady() {
     document.addEventListener("backbutton", back, false);
+    if(mainCtrl != null){
+        mainCtrl.devicePlatform = device.platform;
+    }
 }
 
 function back() {
@@ -53,6 +56,7 @@ angular.module('JLRAssessment.controllers.Main', [])
             mainCtrl.showInterview = false;
             hideExit=false;
             
+            console.log ( 'mainCtrl.hideExit:'+mainCtrl.hideExit );
 //            for (var x = 0; x < 61; x++) {
 //                $scope.test1PageLinks.push(x+1);
 //            };
