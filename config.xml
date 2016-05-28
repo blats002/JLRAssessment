@@ -16,7 +16,7 @@
     <!--<plugin name="cordova-plugin-media-capture" source="npm" spec="&gt;1.0.0" />-->
     <plugin name="cordova-plugin-console" source="npm" spec="&gt;1.0.0" />
     <!--<plugin name="cordova-plugin-contacts" source="npm" spec="&gt;1.0.0" />-->
-    <!--<plugin name="cordova-plugin-device" source="npm" spec="&gt;1.0.0" />-->
+    <plugin name="cordova-plugin-device" source="npm" spec="&gt;1.0.0" />
     <!--<plugin name="cordova-plugin-device-motion" source="npm" spec="&gt;1.0.0" />-->
     <!--<plugin name="cordova-plugin-device-orientation" source="npm" spec="&gt;1.0.0" />-->
     <plugin name="cordova-plugin-dialogs" source="npm" spec="&gt;1.0.0" />
