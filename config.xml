@@ -13,7 +13,7 @@
     <preference name="StatusBarOverlaysWebView" value="false"/>
     <preference name="StatusBarBackgroundColor" value="#FFFFFF"/>
     <preference name="StatusBarStyle" value="default" />
-    <preference name="SplashScreenDelay" value="0"/>
+    <preference name="SplashScreenDelay" value="100"/>
     <plugin name="cordova-plugin-battery-status" source="npm" spec="&gt;1.0.0" />
     <!--<plugin name="cordova-plugin-camera" source="npm" spec="&gt;1.0.0" />-->
     <!--<plugin name="cordova-plugin-media-capture" source="npm" spec="&gt;1.0.0" />-->
@@ -36,17 +36,21 @@
     <plugin name="cordova-plugin-whitelist" source="npm" spec="&gt;1.0.0" />
     <platform name="android">
         <icon platform="android" src="images/icon.png"/>
+        <splash platform="android" src="images/icon.png" />
     </platform>
     <platform name="ios">
         <icon platform="ios" src="images/icon.png"/>
+        <splash platform="ios" src="images/icon.png" />
         <preference name="FadeSplashScreen" value="false"/>
         <preference name="FadeSplashScreenDuration" value="0"/>
     </platform>
     <platform name="wp8">
         <icon platform="wp8" src="images/icon.png"/>
+        <splash platform="wp8" src="images/icon.png" />
     </platform>
     <platform name="windows">
         <icon platform="windows" src="images/icon.png"/>
+        <splash platform="windows" src="images/icon.png" />
     </platform>
     <access origin="*" />
     <!--<allow-intent href="http://*/*" />-->
