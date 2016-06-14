@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="co.uk.jaguarlandroverassessment" version="0.0.14" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="co.uk.jaguarlandroverassessment" version="0.0.15" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>JLR Assessment</name>
     <description>
         A simple Assessment tool for JLR.
@@ -13,7 +13,7 @@
     <preference name="StatusBarOverlaysWebView" value="false"/>
     <preference name="StatusBarBackgroundColor" value="#FFFFFF"/>
     <preference name="StatusBarStyle" value="default" />
-    <preference name="SplashScreenDelay" value="100"/>
+    <preference name="SplashScreenDelay" value="0"/>
     <plugin name="cordova-plugin-battery-status" source="npm" spec="&gt;1.0.0" />
     <!--<plugin name="cordova-plugin-camera" source="npm" spec="&gt;1.0.0" />-->
     <!--<plugin name="cordova-plugin-media-capture" source="npm" spec="&gt;1.0.0" />-->
