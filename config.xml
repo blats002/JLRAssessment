@@ -13,7 +13,8 @@
     <preference name="StatusBarOverlaysWebView" value="false"/>
     <preference name="StatusBarBackgroundColor" value="#FFFFFF"/>
     <preference name="StatusBarStyle" value="default" />
-    <preference name="SplashScreenDelay" value="0"/>
+    <preference name="SplashScreenDelay" value="5000"/>
+    <preference name="SplashMaintainAspectRatio" value="true" />
     <plugin name="cordova-plugin-battery-status" source="npm" spec="&gt;1.0.0" />
     <!--<plugin name="cordova-plugin-camera" source="npm" spec="&gt;1.0.0" />-->
     <!--<plugin name="cordova-plugin-media-capture" source="npm" spec="&gt;1.0.0" />-->
