@@ -35,6 +35,10 @@
     <plugin name="cordova-plugin-statusbar" source="npm" spec="&gt;1.0.0" />
     <!--<plugin name="cordova-plugin-vibration" source="npm" spec="&gt;1.0.0" />-->
     <plugin name="cordova-plugin-whitelist" source="npm" spec="&gt;1.0.0" />
+    
+    <preference name="SplashScreenWidth" value="300" /> <!-- defaults to "170" -->
+    <preference name="SplashScreenHeight" value="300" /> <!-- defaults to "200" -->
+    
     <platform name="android">
         <icon platform="android" src="images/icon.png"/>
         <splash platform="android" src="images/icon.png" />
