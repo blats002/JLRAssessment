@@ -1,11 +1,5 @@
-
-document.addEventListener("deviceready", onDeviceReady, false);
-
 function onDeviceReady() {
-    document.addEventListener("backbutton", back, false);
-    if(mainCtrl != null){
-        mainCtrl.devicePlatform = device.platform;
-    }
+    navigator.splashscreen.hide();
 }
 
 function back() {
@@ -45,8 +39,20 @@ Array.prototype.shuffle = function () {
 };
 
 angular.module('JLRAssessment.controllers.Main', [])
-        .controller('MainController', function ($scope, $rootScope, ngDialog) {
+        .controller('MainController', function ($route, $scope, $rootScope, ngDialog) {
+            
+            
             mainCtrl = this;
+            mainCtrl.showBack = false;
+            
+            $scope.$on('$routeChangeStart', function(next, current) { 
+                if(current.templateUrl === "home.html"){
+                    mainCtrl.showBack = false;
+                } else {
+                    mainCtrl.showBack = true;
+                }
+//                console.log(current.templateUrl);
+              });
     
 //            mainCtrl.test1PageLinks = [];
 //            mainCtrl.test2PageLinks = [];
@@ -56,7 +62,7 @@ angular.module('JLRAssessment.controllers.Main', [])
             mainCtrl.showInterview = false;
             hideExit=false;
             
-            console.log ( 'mainCtrl.hideExit:'+mainCtrl.hideExit );
+//            console.log ( 'mainCtrl.hideExit:'+mainCtrl.hideExit );
 //            for (var x = 0; x < 61; x++) {
 //                $scope.test1PageLinks.push(x+1);
 //            };
@@ -65,6 +71,9 @@ angular.module('JLRAssessment.controllers.Main', [])
 //            };
     
             mainCtrl.back = function () {
+                if(!mainCtrl.showBack){
+                    navigator.app.exitApp();
+                }
                 window.history.go(-1);
                 mainCtrl.showPrevious = false;
                 mainCtrl.showStart = false;
@@ -92,13 +101,17 @@ angular.module('JLRAssessment.controllers.Main', [])
             mainCtrl.showStart = false;
             mainCtrl.showNext = false;
             mainCtrl.showEnd = false;
+            
+            document.addEventListener("deviceready", onDeviceReady, false);
+            document.addEventListener("backbutton", back, false);
 
         })
         .controller('TestController', function ($scope, $rootScope, $routeParams, ngDialog, $timeout) {
             mainCtrl.showButtonNav = true;
             testCtrl = this;
             testCtrl.showModal1 = false;
-            mainCtrl.hideExit=true;
+//            mainCtrl.hideExit=true;
+            mainCtrl.showBack = true;
 
             testCtrl.closeTimeUpModal = function () {
                 testCtrl.timeUpModal = false;
@@ -300,9 +313,10 @@ This test is not timed.",
             interviewCtrl = this;
             interviewCtrl.questions=interviewquestions;
             interviewCtrl.showQuestion = false;
+            mainCtrl.showBack = true;
             mainCtrl.showPrevious = false;
             mainCtrl.showNext = true;
-            mainCtrl.hideExit = false;
+//            mainCtrl.hideExit = false;
             mainCtrl.next = function () {
                 interviewCtrl.showQuestion = true;
                 mainCtrl.showPrevious = true;
@@ -326,9 +340,10 @@ This test is not timed.",
                 mainCtrl.showPrevious = manualCtrl.page > 1;
                 mainCtrl.showNext = manualCtrl.page > 0 && manualCtrl.page < 3;
             };
+            mainCtrl.showBack = true;
             mainCtrl.showPrevious = false;
             mainCtrl.showNext = true;
-            mainCtrl.hideExit = false;
+//            mainCtrl.hideExit = false;
             
             manualCtrl.gotoPage(manualCtrl.page);
             manualCtrl.showCylynder = function () {

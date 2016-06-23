@@ -1,0 +1,42 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-battery-status": {
+            "PACKAGE_NAME": "com.jlr.assessment"
+        },
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "com.jlr.assessment"
+        },
+        "cordova-plugin-dialogs": {
+            "PACKAGE_NAME": "com.jlr.assessment"
+        },
+        "es.keensoft.fullscreenimage": {
+            "PACKAGE_NAME": "com.jlr.assessment"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.jlr.assessment"
+        },
+        "cordova-plugin-globalization": {
+            "PACKAGE_NAME": "co.uk.jaguarlandroverassessment"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "co.uk.jaguarlandroverassessment"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "co.uk.jaguarlandroverassessment"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "co.uk.jaguarlandroverassessment"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "co.uk.jaguarlandroverassessment"
+        }
+    },
+    "dependent_plugins": {}
+}

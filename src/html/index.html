@@ -29,16 +29,16 @@
 <!--                <img src="images/header.png" alt="JLR Assessment" style="max-width:100px; margin-top: -15px;margin-right: -50%;" align="middle">-->
                     <img src="images/header.png" alt="JLR Assessment" style="max-width:100px;">
         </div>
-            <div class="btn-group pull-left" ui-yield-to="navbarAction">
+            <div ng-show="main.showBack" class="btn-group pull-left" ui-yield-to="navbarAction">
                 <div class="btn">
                     <a ng-click="main.back()" class="btn btn-primary btn-block"><i class="fa fa-angle-double-left"></i> Back</a>
           </div>
         </div>
-            <div ng-hide="(main.devicePlatform === 'iOS' || main.hideExit && (main.showNext || main.showEnd))" class="btn-group pull-right" ui-yield-to="navbarAction">
+<!--            <div ng-hide="(main.devicePlatform === 'iOS' || main.hideExit && (main.showNext || main.showEnd))" class="btn-group pull-right" ui-yield-to="navbarAction">
                 <div class="btn">
                     <a ng-click="main.exit()" class="btn btn-primary btn-block">Exit <i class="fa fa-sign-out"></i></a>
           </div>
-        </div>
+        </div>-->
             <div ng-show="(main.showNext || main.showEnd) && main.showTest2PageLinks" class="btn btn-group pull-right" ui-yield-to="navbarAction">
                 <a ui-turn-on='myDropdown2' class='btn btn-primary btn-block'>Jump to <i class="fa fa-caret-down"></i></a>
                 <ul class="dropdown-menu scrollable-content mymenu" 

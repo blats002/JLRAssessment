@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="co.uk.jaguarlandroverassessment" version="0.0.14" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="co.uk.jaguarlandroverassessment" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>JLR Assessment</name>
     <description>
         A simple Assessment tool for JLR.
     </description>
-    <author email="ramil.saavedra@gmail.com.com" href="http://phonegap.com">
+    <author email="ramil.saavedra@gmail.com" href="http://phonegap.com">
         Ramil Saavedra FreeLancer
     </author>
     <content src="index.html" />
@@ -14,6 +14,7 @@
     <preference name="StatusBarBackgroundColor" value="#FFFFFF"/>
     <preference name="StatusBarStyle" value="default" />
     <preference name="SplashScreenDelay" value="0"/>
+    <!--<preference name="SplashMaintainAspectRatio" value="true" />-->
     <plugin name="cordova-plugin-battery-status" source="npm" spec="&gt;1.0.0" />
     <!--<plugin name="cordova-plugin-camera" source="npm" spec="&gt;1.0.0" />-->
     <!--<plugin name="cordova-plugin-media-capture" source="npm" spec="&gt;1.0.0" />-->
@@ -34,19 +35,27 @@
     <plugin name="cordova-plugin-statusbar" source="npm" spec="&gt;1.0.0" />
     <!--<plugin name="cordova-plugin-vibration" source="npm" spec="&gt;1.0.0" />-->
     <plugin name="cordova-plugin-whitelist" source="npm" spec="&gt;1.0.0" />
+    
+<!--    <preference name="SplashScreenWidth" value="300" />  defaults to "170" 
+    <preference name="SplashScreenHeight" value="300" />  defaults to "200" -->
+    
     <platform name="android">
         <icon platform="android" src="images/icon.png"/>
+        <splash platform="android" src="images/icon.png" width="300" height="300" />
     </platform>
     <platform name="ios">
         <icon platform="ios" src="images/icon.png"/>
+        <splash platform="ios" src="images/icon.png" width="300" height="300"/>
         <preference name="FadeSplashScreen" value="false"/>
         <preference name="FadeSplashScreenDuration" value="0"/>
     </platform>
     <platform name="wp8">
         <icon platform="wp8" src="images/icon.png"/>
+        <splash platform="wp8" src="images/icon.png" width="300" height="300"/>
     </platform>
     <platform name="windows">
         <icon platform="windows" src="images/icon.png"/>
+        <splash platform="windows" src="images/icon.png" width="300" height="300"/>
     </platform>
     <access origin="*" />
     <!--<allow-intent href="http://*/*" />-->
